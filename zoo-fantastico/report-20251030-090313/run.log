@@ -1,0 +1,14 @@
+WARNING: package sun.awt.X11 not in java.desktop
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+Creating summariser <summary>
+Created the tree successfully using /Users/zoet/Downloads/creatures-load-4.jmx
+Starting standalone test @ 2025 Oct 30 09:03:14 COT (1761832994619)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary +  46363 in 00:00:15 = 3039.2/s Avg:     2 Min:     0 Max:   118 Err:     0 (0.00%) Active: 6 Started: 26 Finished: 20
+summary +  53637 in 00:00:17 = 3201.6/s Avg:     1 Min:     0 Max:    51 Err:     0 (0.00%) Active: 0 Started: 50 Finished: 50
+summary = 100000 in 00:00:32 = 3124.1/s Avg:     1 Min:     0 Max:   118 Err:     0 (0.00%)
+Tidying up ...    @ 2025 Oct 30 09:03:46 COT (1761833026754)
+... end of run

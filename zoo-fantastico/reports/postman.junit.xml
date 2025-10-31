@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite id="0" hostname="http://host.docker.internal" package="" name="POST Crear Criatura" tests="1" failures="0" errors="0" timestamp="2025-10-29T17:40:53.944" time="0.165">
+    <properties>
+      <property name="baseUrl" value="http://host.docker.internal:8080"/>
+      <property name="zoneId" value="1"/>
+      <property name="creatureId" value="11"/>
+      <property name="criticalCreatureId" value="12"/>
+    </properties>
+    <testcase classname=" / POST Crear Criatura" name="Creature created successfully" time="0.165"/>
+  </testsuite>
+  <testsuite id="1" hostname="http://host.docker.internal" package="" name="GET Lista de Criaturas" tests="1" failures="0" errors="0" timestamp="2025-10-29T17:40:54.109" time="0.039">
+    <properties>
+      <property name="baseUrl" value="http://host.docker.internal:8080"/>
+      <property name="zoneId" value="1"/>
+      <property name="creatureId" value="11"/>
+      <property name="criticalCreatureId" value="12"/>
+    </properties>
+    <testcase classname=" / GET Lista de Criaturas" name="List retrieved" time="0.039"/>
+  </testsuite>
+  <testsuite id="2" hostname="http://host.docker.internal" package="" name="GET Criatura por ID" tests="1" failures="0" errors="0" timestamp="2025-10-29T17:40:54.148" time="0.011">
+    <properties>
+      <property name="baseUrl" value="http://host.docker.internal:8080"/>
+      <property name="zoneId" value="1"/>
+      <property name="creatureId" value="11"/>
+      <property name="criticalCreatureId" value="12"/>
+    </properties>
+    <testcase classname=" / GET Criatura por ID" name="Creature retrieved successfully" time="0.011"/>
+  </testsuite>
+  <testsuite id="3" hostname="http://host.docker.internal" package="" name="PUT Actualizar Criatura" tests="1" failures="0" errors="0" timestamp="2025-10-29T17:40:54.159" time="0.024">
+    <properties>
+      <property name="baseUrl" value="http://host.docker.internal:8080"/>
+      <property name="zoneId" value="1"/>
+      <property name="creatureId" value="11"/>
+      <property name="criticalCreatureId" value="12"/>
+    </properties>
+    <testcase classname=" / PUT Actualizar Criatura" name="Creature updated successfully" time="0.024"/>
+  </testsuite>
+  <testsuite id="4" hostname="http://host.docker.internal" package="" name="DELETE Eliminar Criatura" tests="1" failures="0" errors="0" timestamp="2025-10-29T17:40:54.183" time="0.014">
+    <properties>
+      <property name="baseUrl" value="http://host.docker.internal:8080"/>
+      <property name="zoneId" value="1"/>
+      <property name="creatureId" value="11"/>
+      <property name="criticalCreatureId" value="12"/>
+    </properties>
+    <testcase classname=" / DELETE Eliminar Criatura" name="Creature deleted successfully" time="0.014"/>
+  </testsuite>
+  <testsuite id="5" hostname="http://host.docker.internal" package="" name="POST Crear Criatura CRÍTICA" tests="1" failures="0" errors="0" timestamp="2025-10-29T17:40:54.197" time="0.011">
+    <properties>
+      <property name="baseUrl" value="http://host.docker.internal:8080"/>
+      <property name="zoneId" value="1"/>
+      <property name="creatureId" value="11"/>
+      <property name="criticalCreatureId" value="12"/>
+    </properties>
+    <testcase classname=" / POST Crear Criatura CRÍTICA" name="Critical creature created" time="0.011"/>
+  </testsuite>
+  <testsuite id="6" hostname="http://host.docker.internal" package="" name="DELETE Criatura CRÍTICA (espera 422)" tests="1" failures="0" errors="0" timestamp="2025-10-29T17:40:54.208" time="0.012">
+    <properties>
+      <property name="baseUrl" value="http://host.docker.internal:8080"/>
+      <property name="zoneId" value="1"/>
+      <property name="creatureId" value="11"/>
+      <property name="criticalCreatureId" value="12"/>
+    </properties>
+    <testcase classname=" / DELETE Criatura CRÍTICA (espera 422)" name="Delete blocked for critical creature (422)" time="0.012"/>
+  </testsuite>
+</testsuites>

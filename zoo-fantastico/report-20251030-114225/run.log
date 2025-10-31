@@ -1,0 +1,16 @@
+WARNING: package sun.awt.X11 not in java.desktop
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+WARN StatusConsoleListener The use of package scanning to locate plugins is deprecated and will be removed in a future release
+Creating summariser <summary>
+Created the tree successfully using jmeter/creatures-load-4.jmx
+Starting standalone test @ 2025 Oct 30 11:42:25 COT (1761842545915)
+Waiting for possible Shutdown/StopTestNow/HeapDump/ThreadDump message on port 4445
+summary +      8 in 00:00:04 =    1.9/s Avg:     2 Min:     1 Max:    11 Err:     8 (100.00%) Active: 1 Started: 8 Finished: 7
+summary +     50 in 00:00:30 =    1.7/s Avg:     1 Min:     0 Max:     2 Err:    50 (100.00%) Active: 1 Started: 58 Finished: 57
+summary =     58 in 00:00:34 =    1.7/s Avg:     1 Min:     0 Max:    11 Err:    58 (100.00%)
+summary +     42 in 00:00:25 =    1.7/s Avg:     1 Min:     0 Max:     2 Err:    42 (100.00%) Active: 0 Started: 100 Finished: 100
+summary =    100 in 00:00:59 =    1.7/s Avg:     1 Min:     0 Max:    11 Err:   100 (100.00%)
+Tidying up ...    @ 2025 Oct 30 11:43:25 COT (1761842605432)
+... end of run
