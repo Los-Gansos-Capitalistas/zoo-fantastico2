@@ -1,0 +1,339 @@
+2025-10-30 12:12:18,682 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2025-10-30 12:12:18,694 INFO o.a.j.JMeter: Loading user properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/user.properties
+2025-10-30 12:12:18,695 INFO o.a.j.JMeter: Loading system properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/system.properties
+2025-10-30 12:12:18,695 INFO o.a.j.JMeter: Setting JMeter property: users=50
+2025-10-30 12:12:18,695 INFO o.a.j.JMeter: Setting JMeter property: ramp=50
+2025-10-30 12:12:18,695 INFO o.a.j.JMeter: Setting JMeter property: loops=1
+2025-10-30 12:12:18,695 INFO o.a.j.JMeter: Setting JMeter property: csv=jmeter/data/creatures-2.csv
+2025-10-30 12:12:18,695 INFO o.a.j.JMeter: Setting JMeter property: host=127.0.0.1
+2025-10-30 12:12:18,695 INFO o.a.j.JMeter: Setting JMeter property: port=8080
+2025-10-30 12:12:18,695 WARN o.a.j.JMeter: Removing JMeter property: token
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: Copyright (c) 1998-2024 The Apache Software Foundation
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: Version 5.6.3
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: java.version=21.0.9
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: os.name=Mac OS X
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: os.arch=aarch64
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: os.version=26.0.1
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: file.encoding=UTF-8
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: java.awt.headless=true
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: Max memory     =1073741824
+2025-10-30 12:12:18,698 INFO o.a.j.JMeter: Available Processors =8
+2025-10-30 12:12:18,704 INFO o.a.j.JMeter: Default Locale=English (EN)
+2025-10-30 12:12:18,704 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2025-10-30 12:12:18,704 INFO o.a.j.JMeter: JMeterHome=/opt/homebrew/Cellar/jmeter/5.6.3/libexec
+2025-10-30 12:12:18,704 INFO o.a.j.JMeter: user.dir  =/Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico
+2025-10-30 12:12:18,704 INFO o.a.j.JMeter: PWD       =/Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico
+2025-10-30 12:12:18,708 INFO o.a.j.JMeter: IP: 127.0.0.1 Name: Laptop-de-Laura-2.local FullName: localhost
+2025-10-30 12:12:18,715 INFO o.a.j.JMeter: Setting property 'jmeter.reportgenerator.outputdir' to:'/Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico/report-20251030-121217/site'
+2025-10-30 12:12:18,717 INFO o.a.j.s.FileServer: Default base='/Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico'
+2025-10-30 12:12:18,717 INFO o.a.j.s.FileServer: Set new base='/Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico/jmeter'
+2025-10-30 12:12:18,807 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2025-10-30 12:12:18,833 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2025-10-30 12:12:18,834 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2025-10-30 12:12:18,836 INFO o.a.j.s.SaveService: Loading file: jmeter/creatures-load-4.jmx
+2025-10-30 12:12:18,874 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-10-30 12:12:18,874 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-10-30 12:12:18,874 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-10-30 12:12:18,874 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2025-10-30 12:12:18,874 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2025-10-30 12:12:18,875 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2025-10-30 12:12:18,907 INFO o.a.j.JMeter: Creating summariser <summary>
+2025-10-30 12:12:18,909 INFO o.a.j.r.d.ReportGenerator: ReportGenerator will use for Parsing the separator: ','
+2025-10-30 12:12:18,909 INFO o.a.j.r.d.ReportGenerator: Will generate report at end of test from  results file: report-20251030-121217/results-20251030-121217.jtl
+2025-10-30 12:12:18,909 INFO o.a.j.r.d.ReportGenerator: Reading report generator properties from: /opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/reportgenerator.properties
+2025-10-30 12:12:18,909 INFO o.a.j.r.d.ReportGenerator: Merging with JMeter properties
+2025-10-30 12:12:18,911 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.temp_dir' not found, using default value 'temp' instead.
+2025-10-30 12:12:18,912 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.apdex_per_transaction' not found, using default value 'null' instead.
+2025-10-30 12:12:18,912 INFO o.a.j.r.c.ReportGeneratorConfiguration: apdex_per_transaction is empty, not APDEX per transaction customization
+2025-10-30 12:12:18,912 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.sample_filter' not found, using default value 'null' instead.
+2025-10-30 12:12:18,912 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.report_title' not found, using default value 'null' instead.
+2025-10-30 12:12:18,912 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.start_date' not found, using default value 'null' instead.
+2025-10-30 12:12:18,912 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.end_date' not found, using default value 'null' instead.
+2025-10-30 12:12:18,912 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.date_format' not found, using default value 'null' instead.
+2025-10-30 12:12:18,912 INFO o.a.j.r.c.ReportGeneratorConfiguration: Will use date range start date: null, end date: null
+2025-10-30 12:12:18,915 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.totalTPS.exclude_controllers' not found, using default value 'false' instead.
+2025-10-30 12:12:18,915 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.activeThreadsOverTime.exclude_controllers' not found, using default value 'false' instead.
+2025-10-30 12:12:18,915 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.timeVsThreads.exclude_controllers' not found, using default value 'false' instead.
+2025-10-30 12:12:18,915 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimeDistribution.exclude_controllers' not found, using default value 'false' instead.
+2025-10-30 12:12:18,915 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.transactionsPerSecond.exclude_controllers' not found, using default value 'false' instead.
+2025-10-30 12:12:18,915 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentiles.exclude_controllers' not found, using default value 'false' instead.
+2025-10-30 12:12:18,916 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimePercentilesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2025-10-30 12:12:18,916 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.responseTimesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2025-10-30 12:12:18,916 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.connectTimeOverTime.exclude_controllers' not found, using default value 'false' instead.
+2025-10-30 12:12:18,916 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.graph.latenciesOverTime.exclude_controllers' not found, using default value 'false' instead.
+2025-10-30 12:12:18,916 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.filters_only_sample_series' not found, using default value 'true' instead.
+2025-10-30 12:12:18,916 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.series_filter' not found, using default value '' instead.
+2025-10-30 12:12:18,916 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.json.show_controllers_only' not found, using default value 'false' instead.
+2025-10-30 12:12:18,916 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.filters_only_sample_series' not found, using default value 'true' instead.
+2025-10-30 12:12:18,916 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.series_filter' not found, using default value '' instead.
+2025-10-30 12:12:18,916 INFO o.a.j.r.c.ReportGeneratorConfiguration: Property 'jmeter.reportgenerator.exporter.html.show_controllers_only' not found, using default value 'false' instead.
+2025-10-30 12:12:18,924 INFO o.a.j.e.StandardJMeterEngine: Running the test!
+2025-10-30 12:12:18,924 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-10-30 12:12:18,924 INFO o.a.j.s.SampleEvent: List of sample_variables: []
+2025-10-30 12:12:18,926 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2025-10-30 12:12:18,926 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
+2025-10-30 12:12:18,962 INFO o.a.j.r.ClassFinder: Will scan jar /opt/homebrew/Cellar/jmeter/5.6.3/libexec/lib/ext/jmeter-plugins-manager-1.9.jar with filter ExtendsClassFilter [parents=[interface org.apache.jmeter.functions.Function], inner=false, contains=null, notContains=null]. Consider exposing JMeter plugins via META-INF/services, and add JMeter-Skip-Class-Scanning=true manifest attribute so JMeter can skip classfile scanning
+2025-10-30 12:12:19,106 INFO o.a.j.JMeter: Running test (1761844339106)
+2025-10-30 12:12:19,114 INFO o.a.j.e.StandardJMeterEngine: Starting ThreadGroup: 1 : TG-Create (param: users/ramp)
+2025-10-30 12:12:19,114 INFO o.a.j.e.StandardJMeterEngine: Starting 50 threads for group TG-Create (param: users/ramp).
+2025-10-30 12:12:19,114 INFO o.a.j.e.StandardJMeterEngine: Thread will continue on error
+2025-10-30 12:12:19,114 INFO o.a.j.t.ThreadGroup: Starting thread group... number=1 threads=50 ramp-up=50 delayedStart=false
+2025-10-30 12:12:19,122 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-1
+2025-10-30 12:12:19,122 INFO o.a.j.s.FileServer: Stored: /Users/zoet/Downloads/creatures-2.csv
+2025-10-30 12:12:19,132 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-001, species=Dragon
+2025-10-30 12:12:19,140 INFO o.a.j.p.h.s.HTTPHCAbstractImpl: Local host = Laptop-de-Laura-2.local
+2025-10-30 12:12:19,143 INFO o.a.j.p.h.s.HTTPHC4Impl: HTTP request retry count = 0
+2025-10-30 12:12:19,144 INFO o.a.j.s.SampleResult: Note: Sample TimeStamps are START times
+2025-10-30 12:12:19,144 INFO o.a.j.s.SampleResult: sampleresult.default.encoding is set to UTF-8
+2025-10-30 12:12:19,144 INFO o.a.j.s.SampleResult: sampleresult.useNanoTime=true
+2025-10-30 12:12:19,144 INFO o.a.j.s.SampleResult: sampleresult.nanoThreadSleep=5000
+2025-10-30 12:12:19,206 INFO o.a.j.t.ThreadGroup: Started thread group number 1
+2025-10-30 12:12:19,206 INFO o.a.j.e.StandardJMeterEngine: All thread groups have been started
+2025-10-30 12:12:19,249 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-1
+2025-10-30 12:12:19,249 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-1
+2025-10-30 12:12:20,124 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-2
+2025-10-30 12:12:20,129 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-002, species=Griffin
+2025-10-30 12:12:20,157 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-2
+2025-10-30 12:12:20,158 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-2
+2025-10-30 12:12:21,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-3
+2025-10-30 12:12:21,124 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-003, species=Phoenix
+2025-10-30 12:12:21,151 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-3
+2025-10-30 12:12:21,151 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-3
+2025-10-30 12:12:22,122 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-4
+2025-10-30 12:12:22,126 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-004, species=Basilisk
+2025-10-30 12:12:22,193 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-4
+2025-10-30 12:12:22,193 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-4
+2025-10-30 12:12:23,122 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-5
+2025-10-30 12:12:23,124 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-005, species=Hydra
+2025-10-30 12:12:23,146 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-5
+2025-10-30 12:12:23,147 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-5
+2025-10-30 12:12:24,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-6
+2025-10-30 12:12:24,122 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-006, species=Dragon
+2025-10-30 12:12:24,148 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-6
+2025-10-30 12:12:24,148 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-6
+2025-10-30 12:12:25,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-7
+2025-10-30 12:12:25,122 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-007, species=Griffin
+2025-10-30 12:12:25,146 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-7
+2025-10-30 12:12:25,147 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-7
+2025-10-30 12:12:26,122 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-8
+2025-10-30 12:12:26,125 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-008, species=Phoenix
+2025-10-30 12:12:26,151 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-8
+2025-10-30 12:12:26,152 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-8
+2025-10-30 12:12:27,122 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-9
+2025-10-30 12:12:27,126 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-009, species=Basilisk
+2025-10-30 12:12:27,154 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-9
+2025-10-30 12:12:27,154 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-9
+2025-10-30 12:12:28,121 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-10
+2025-10-30 12:12:28,124 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-010, species=Hydra
+2025-10-30 12:12:28,153 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-10
+2025-10-30 12:12:28,154 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-10
+2025-10-30 12:12:29,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-11
+2025-10-30 12:12:29,123 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-011, species=Dragon
+2025-10-30 12:12:29,150 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-11
+2025-10-30 12:12:29,150 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-11
+2025-10-30 12:12:30,121 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-12
+2025-10-30 12:12:30,125 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-012, species=Griffin
+2025-10-30 12:12:30,153 INFO o.a.j.r.Summariser: summary +     12 in 00:00:11 =    1.1/s Avg:    31 Min:    20 Max:    70 Err:     0 (0.00%) Active: 1 Started: 12 Finished: 11
+2025-10-30 12:12:30,154 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-12
+2025-10-30 12:12:30,154 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-12
+2025-10-30 12:12:31,125 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-13
+2025-10-30 12:12:31,128 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-013, species=Phoenix
+2025-10-30 12:12:31,155 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-13
+2025-10-30 12:12:31,155 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-13
+2025-10-30 12:12:32,121 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-14
+2025-10-30 12:12:32,125 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-014, species=Basilisk
+2025-10-30 12:12:32,153 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-14
+2025-10-30 12:12:32,153 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-14
+2025-10-30 12:12:33,124 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-15
+2025-10-30 12:12:33,127 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-015, species=Hydra
+2025-10-30 12:12:33,154 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-15
+2025-10-30 12:12:33,154 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-15
+2025-10-30 12:12:34,122 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-16
+2025-10-30 12:12:34,126 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-016, species=Dragon
+2025-10-30 12:12:34,153 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-16
+2025-10-30 12:12:34,153 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-16
+2025-10-30 12:12:35,118 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-17
+2025-10-30 12:12:35,120 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-017, species=Griffin
+2025-10-30 12:12:35,148 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-17
+2025-10-30 12:12:35,148 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-17
+2025-10-30 12:12:36,120 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-18
+2025-10-30 12:12:36,125 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-018, species=Phoenix
+2025-10-30 12:12:36,153 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-18
+2025-10-30 12:12:36,153 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-18
+2025-10-30 12:12:37,118 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-19
+2025-10-30 12:12:37,121 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-019, species=Basilisk
+2025-10-30 12:12:37,179 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-19
+2025-10-30 12:12:37,179 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-19
+2025-10-30 12:12:38,116 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-20
+2025-10-30 12:12:38,117 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-020, species=Hydra
+2025-10-30 12:12:38,134 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-20
+2025-10-30 12:12:38,134 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-20
+2025-10-30 12:12:39,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-21
+2025-10-30 12:12:39,123 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-021, species=Dragon
+2025-10-30 12:12:39,163 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-21
+2025-10-30 12:12:39,163 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-21
+2025-10-30 12:12:40,122 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-22
+2025-10-30 12:12:40,126 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-022, species=Griffin
+2025-10-30 12:12:40,157 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-22
+2025-10-30 12:12:40,158 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-22
+2025-10-30 12:12:41,121 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-23
+2025-10-30 12:12:41,124 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-023, species=Phoenix
+2025-10-30 12:12:41,159 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-23
+2025-10-30 12:12:41,159 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-23
+2025-10-30 12:12:42,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-24
+2025-10-30 12:12:42,123 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-024, species=Basilisk
+2025-10-30 12:12:42,152 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-24
+2025-10-30 12:12:42,152 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-24
+2025-10-30 12:12:43,120 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-25
+2025-10-30 12:12:43,126 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-025, species=Hydra
+2025-10-30 12:12:43,155 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-25
+2025-10-30 12:12:43,155 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-25
+2025-10-30 12:12:44,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-26
+2025-10-30 12:12:44,122 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-026, species=Dragon
+2025-10-30 12:12:44,157 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-26
+2025-10-30 12:12:44,157 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-26
+2025-10-30 12:12:45,121 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-27
+2025-10-30 12:12:45,123 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-027, species=Griffin
+2025-10-30 12:12:45,151 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-27
+2025-10-30 12:12:45,151 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-27
+2025-10-30 12:12:46,121 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-28
+2025-10-30 12:12:46,124 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-028, species=Phoenix
+2025-10-30 12:12:46,152 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-28
+2025-10-30 12:12:46,152 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-28
+2025-10-30 12:12:47,120 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-29
+2025-10-30 12:12:47,123 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-029, species=Basilisk
+2025-10-30 12:12:47,150 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-29
+2025-10-30 12:12:47,150 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-29
+2025-10-30 12:12:48,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-30
+2025-10-30 12:12:48,120 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-030, species=Hydra
+2025-10-30 12:12:48,148 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-30
+2025-10-30 12:12:48,148 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-30
+2025-10-30 12:12:49,118 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-31
+2025-10-30 12:12:49,123 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-031, species=Dragon
+2025-10-30 12:12:49,149 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-31
+2025-10-30 12:12:49,150 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-31
+2025-10-30 12:12:50,120 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-32
+2025-10-30 12:12:50,121 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-032, species=Griffin
+2025-10-30 12:12:50,171 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-32
+2025-10-30 12:12:50,172 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-32
+2025-10-30 12:12:51,121 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-33
+2025-10-30 12:12:51,125 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-033, species=Phoenix
+2025-10-30 12:12:51,151 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-33
+2025-10-30 12:12:51,151 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-33
+2025-10-30 12:12:52,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-34
+2025-10-30 12:12:52,123 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-034, species=Basilisk
+2025-10-30 12:12:52,153 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-34
+2025-10-30 12:12:52,153 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-34
+2025-10-30 12:12:53,117 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-35
+2025-10-30 12:12:53,121 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-035, species=Hydra
+2025-10-30 12:12:53,149 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-35
+2025-10-30 12:12:53,149 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-35
+2025-10-30 12:12:54,120 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-36
+2025-10-30 12:12:54,123 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-036, species=Dragon
+2025-10-30 12:12:54,151 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-36
+2025-10-30 12:12:54,152 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-36
+2025-10-30 12:12:55,118 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-37
+2025-10-30 12:12:55,122 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-037, species=Griffin
+2025-10-30 12:12:55,153 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-37
+2025-10-30 12:12:55,153 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-37
+2025-10-30 12:12:56,120 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-38
+2025-10-30 12:12:56,122 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-038, species=Phoenix
+2025-10-30 12:12:56,140 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-38
+2025-10-30 12:12:56,140 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-38
+2025-10-30 12:12:57,120 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-39
+2025-10-30 12:12:57,123 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-039, species=Basilisk
+2025-10-30 12:12:57,155 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-39
+2025-10-30 12:12:57,155 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-39
+2025-10-30 12:12:58,121 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-40
+2025-10-30 12:12:58,125 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-040, species=Hydra
+2025-10-30 12:12:58,150 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-40
+2025-10-30 12:12:58,150 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-40
+2025-10-30 12:12:59,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-41
+2025-10-30 12:12:59,122 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-041, species=Dragon
+2025-10-30 12:12:59,148 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-41
+2025-10-30 12:12:59,148 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-41
+2025-10-30 12:13:00,117 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-42
+2025-10-30 12:13:00,120 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-042, species=Griffin
+2025-10-30 12:13:00,138 INFO o.a.j.r.Summariser: summary +     30 in 00:00:30 =    1.0/s Avg:    27 Min:    15 Max:    54 Err:     0 (0.00%) Active: 1 Started: 42 Finished: 41
+2025-10-30 12:13:00,139 INFO o.a.j.r.Summariser: summary =     42 in 00:00:41 =    1.0/s Avg:    28 Min:    15 Max:    70 Err:     0 (0.00%)
+2025-10-30 12:13:00,139 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-42
+2025-10-30 12:13:00,140 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-42
+2025-10-30 12:13:01,118 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-43
+2025-10-30 12:13:01,121 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-043, species=Phoenix
+2025-10-30 12:13:01,156 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-43
+2025-10-30 12:13:01,157 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-43
+2025-10-30 12:13:02,118 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-44
+2025-10-30 12:13:02,122 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-044, species=Basilisk
+2025-10-30 12:13:02,152 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-44
+2025-10-30 12:13:02,153 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-44
+2025-10-30 12:13:03,119 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-45
+2025-10-30 12:13:03,122 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-045, species=Hydra
+2025-10-30 12:13:03,152 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-45
+2025-10-30 12:13:03,152 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-45
+2025-10-30 12:13:04,118 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-46
+2025-10-30 12:13:04,125 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-046, species=Dragon
+2025-10-30 12:13:04,164 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-46
+2025-10-30 12:13:04,164 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-46
+2025-10-30 12:13:05,117 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-47
+2025-10-30 12:13:05,120 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-047, species=Griffin
+2025-10-30 12:13:05,143 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-47
+2025-10-30 12:13:05,143 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-47
+2025-10-30 12:13:06,120 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-48
+2025-10-30 12:13:06,124 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-048, species=Phoenix
+2025-10-30 12:13:06,156 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-48
+2025-10-30 12:13:06,157 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-48
+2025-10-30 12:13:07,120 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-49
+2025-10-30 12:13:07,123 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-049, species=Basilisk
+2025-10-30 12:13:07,153 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-49
+2025-10-30 12:13:07,153 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-49
+2025-10-30 12:13:08,120 INFO o.a.j.t.JMeterThread: Thread started: TG-Create (param: users/ramp) 1-50
+2025-10-30 12:13:08,122 INFO o.a.j.u.BeanShellTestElement: >>> name=Load-050, species=Hydra
+2025-10-30 12:13:08,146 INFO o.a.j.t.JMeterThread: Thread is done: TG-Create (param: users/ramp) 1-50
+2025-10-30 12:13:08,147 INFO o.a.j.t.JMeterThread: Thread finished: TG-Create (param: users/ramp) 1-50
+2025-10-30 12:13:08,147 INFO o.a.j.e.StandardJMeterEngine: Notifying test listeners of end of test
+2025-10-30 12:13:08,147 INFO o.a.j.s.FileServer: Close: /Users/zoet/Downloads/creatures-2.csv
+2025-10-30 12:13:08,152 INFO o.a.j.r.Summariser: summary +      8 in 00:00:08 =    1.0/s Avg:    27 Min:    21 Max:    36 Err:     0 (0.00%) Active: 0 Started: 50 Finished: 50
+2025-10-30 12:13:08,152 INFO o.a.j.r.Summariser: summary =     50 in 00:00:49 =    1.0/s Avg:    28 Min:    15 Max:    70 Err:     0 (0.00%)
+2025-10-30 12:13:08,153 INFO o.a.j.JMeter: Generating Dashboard
+2025-10-30 12:13:08,153 INFO o.a.j.r.d.ReportGenerator: Flushing result collector before report Generation
+2025-10-30 12:13:08,165 INFO o.a.j.r.p.NormalizerSampleConsumer: Using format, 'ms', to parse timeStamp field
+2025-10-30 12:13:08,209 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.AggregateConsumer#stopProducing(): beginDate produced 0 samples
+2025-10-30 12:13:08,209 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.AggregateConsumer#stopProducing(): endDate produced 0 samples
+2025-10-30 12:13:08,210 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.ApdexSummaryConsumer#stopProducing(): apdexSummary produced 0 samples
+2025-10-30 12:13:08,210 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.RequestsSummaryConsumer#stopProducing(): requestsSummary produced 0 samples
+2025-10-30 12:13:08,212 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.StatisticsSummaryConsumer#stopProducing(): statisticsSummary produced 0 samples
+2025-10-30 12:13:08,213 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.Top5ErrorsBySamplerConsumer#stopProducing(): top5ErrorsBySampler produced 0 samples
+2025-10-30 12:13:08,213 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.ErrorsSummaryConsumer#stopProducing(): errorsSummary produced 0 samples
+2025-10-30 12:13:08,213 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.HitsPerSecondGraphConsumer#stopProducing(): hitsPerSecond produced 0 samples
+2025-10-30 12:13:08,220 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.LatencyVSRequestGraphConsumer#stopProducing(): latencyVsRequest produced 0 samples
+2025-10-30 12:13:08,220 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.SyntheticResponseTimeDistributionGraphConsumer#stopProducing(): syntheticResponseTimeDistribution produced 0 samples
+2025-10-30 12:13:08,220 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.BytesThroughputGraphConsumer#stopProducing(): bytesThroughputOverTime produced 0 samples
+2025-10-30 12:13:08,220 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.CodesPerSecondGraphConsumer#stopProducing(): codesPerSecond produced 0 samples
+2025-10-30 12:13:08,224 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeVSRequestGraphConsumer#stopProducing(): responseTimeVsRequest produced 0 samples
+2025-10-30 12:13:08,224 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): startIntervalControlerFilter produced 350 samples
+2025-10-30 12:13:08,224 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TotalTPSGraphConsumer#stopProducing(): totalTPS produced 0 samples
+2025-10-30 12:13:08,224 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ActiveThreadsGraphConsumer#stopProducing(): activeThreadsOverTime produced 0 samples
+2025-10-30 12:13:08,224 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TimeVSThreadGraphConsumer#stopProducing(): timeVsThreads produced 0 samples
+2025-10-30 12:13:08,224 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeDistributionGraphConsumer#stopProducing(): responseTimeDistribution produced 0 samples
+2025-10-30 12:13:08,224 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.TransactionsPerSecondGraphConsumer#stopProducing(): transactionsPerSecond produced 0 samples
+2025-10-30 12:13:08,224 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimePercentilesGraphConsumer#stopProducing(): responseTimePercentiles produced 0 samples
+2025-10-30 12:13:08,225 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimePercentilesOverTimeGraphConsumer#stopProducing(): responseTimePercentilesOverTime produced 0 samples
+2025-10-30 12:13:08,225 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ResponseTimeOverTimeGraphConsumer#stopProducing(): responseTimesOverTime produced 0 samples
+2025-10-30 12:13:08,225 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.ConnectTimeOverTimeGraphConsumer#stopProducing(): connectTimeOverTime produced 0 samples
+2025-10-30 12:13:08,225 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.graph.impl.LatencyOverTimeGraphConsumer#stopProducing(): latenciesOverTime produced 0 samples
+2025-10-30 12:13:08,225 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): nameFilter produced 750 samples
+2025-10-30 12:13:08,225 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.FilterConsumer#stopProducing(): dateRangeFilter produced 150 samples
+2025-10-30 12:13:08,225 INFO o.a.j.r.p.AbstractSampleConsumer: class org.apache.jmeter.report.processor.NormalizerSampleConsumer#stopProducing(): normalizer produced 50 samples
+2025-10-30 12:13:08,225 INFO o.a.j.r.p.CsvFileSampleSource: produce(): 50 samples produced in 41ms on channel 0
+2025-10-30 12:13:08,225 INFO o.a.j.r.d.ReportGenerator: Exporting data using exporter:'json' of className:'org.apache.jmeter.report.dashboard.JsonExporter'
+2025-10-30 12:13:08,269 INFO o.a.j.r.d.JsonExporter: Found data for consumer statisticsSummary in context
+2025-10-30 12:13:08,269 INFO o.a.j.r.d.JsonExporter: Creating statistics for overall
+2025-10-30 12:13:08,269 INFO o.a.j.r.d.JsonExporter: Creating statistics for other transactions
+2025-10-30 12:13:08,269 INFO o.a.j.r.d.JsonExporter: Checking output folder
+2025-10-30 12:13:08,270 INFO o.a.j.r.d.JsonExporter: Writing statistics JSON to /Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico/report-20251030-121217/site/statistics.json
+2025-10-30 12:13:08,288 INFO o.a.j.r.d.ReportGenerator: Exporting data using exporter:'html' of className:'org.apache.jmeter.report.dashboard.HtmlTemplateExporter'
+2025-10-30 12:13:08,289 INFO o.a.j.r.d.HtmlTemplateExporter: Will generate dashboard in folder: /Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico/report-20251030-121217/site
+2025-10-30 12:13:08,333 INFO o.a.j.r.d.HtmlTemplateExporter: Report will be generated in: /Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico/report-20251030-121217/site, creating folder structure
+2025-10-30 12:13:08,334 INFO o.a.j.r.d.TemplateVisitor: Copying folder from '/opt/homebrew/Cellar/jmeter/5.6.3/libexec/bin/report-template' to '/Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico/report-20251030-121217/site', got message: /Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico/report-20251030-121217/site, found non empty folder with following content [/Users/zoet/Downloads/zoo-fantastico 3/zoo-fantastico/report-20251030-121217/site/statistics.json], will be ignored
+2025-10-30 12:13:08,481 INFO o.a.j.JMeter: Dashboard generated

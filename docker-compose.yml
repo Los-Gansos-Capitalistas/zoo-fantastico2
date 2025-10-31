@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mysql:8.0.39
+    container_name: zoo-mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=zoo_fantastico
+      - MYSQL_USER=zoo
+      - MYSQL_PASSWORD=zoo
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  zoo-app:
+    build: .
+    container_name: zoo-app
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/zoo_fantastico
+      - SPRING_DATASOURCE_USERNAME=zoo
+      - SPRING_DATASOURCE_PASSWORD=zoo
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=validate
+    restart: on-failure
+
+volumes:
+  mysql_data:
