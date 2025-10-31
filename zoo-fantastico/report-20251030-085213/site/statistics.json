@@ -1,0 +1,50 @@
+{
+  "POST /api/creatures" : {
+    "transaction" : "POST /api/creatures",
+    "sampleCount" : 10,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 31.7,
+    "medianResTime" : 27.5,
+    "minResTime" : 25.0,
+    "maxResTime" : 61.0,
+    "pct1ResTime" : 58.70000000000001,
+    "pct2ResTime" : 61.0,
+    "pct3ResTime" : 61.0,
+    "throughput" : 1.1118523460084502,
+    "receivedKBytesPerSec" : 0.45451307816321995,
+    "sentKBytesPerSec" : 0.3459337474983322
+  },
+  "Debug Sampler" : {
+    "transaction" : "Debug Sampler",
+    "sampleCount" : 10,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 0.6000000000000001,
+    "medianResTime" : 0.5,
+    "minResTime" : 0.0,
+    "maxResTime" : 2.0,
+    "pct1ResTime" : 1.9000000000000004,
+    "pct2ResTime" : 2.0,
+    "pct3ResTime" : 2.0,
+    "throughput" : 1.1198208286674132,
+    "receivedKBytesPerSec" : 0.43688322368421056,
+    "sentKBytesPerSec" : 0.0
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 20,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 16.15,
+    "medianResTime" : 13.5,
+    "minResTime" : 0.0,
+    "maxResTime" : 61.0,
+    "pct1ResTime" : 37.30000000000001,
+    "pct2ResTime" : 59.84999999999998,
+    "pct3ResTime" : 61.0,
+    "throughput" : 2.222963209958875,
+    "receivedKBytesPerSec" : 0.887991309603201,
+    "sentKBytesPerSec" : 0.34581839779926643
+  }
+}

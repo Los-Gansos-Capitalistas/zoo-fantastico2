@@ -1,0 +1,34 @@
+{
+  "POST /api/creatures" : {
+    "transaction" : "POST /api/creatures",
+    "sampleCount" : 50,
+    "errorCount" : 50,
+    "errorPct" : 100.0,
+    "meanResTime" : 21.120000000000008,
+    "medianResTime" : 20.0,
+    "minResTime" : 13.0,
+    "maxResTime" : 70.0,
+    "pct1ResTime" : 24.9,
+    "pct2ResTime" : 28.699999999999974,
+    "pct3ResTime" : 70.0,
+    "throughput" : 1.0212209717938767,
+    "receivedKBytesPerSec" : 0.4228493086334021,
+    "sentKBytesPerSec" : 0.31773535313821205
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 50,
+    "errorCount" : 50,
+    "errorPct" : 100.0,
+    "meanResTime" : 21.120000000000008,
+    "medianResTime" : 20.0,
+    "minResTime" : 13.0,
+    "maxResTime" : 70.0,
+    "pct1ResTime" : 24.9,
+    "pct2ResTime" : 28.699999999999974,
+    "pct3ResTime" : 70.0,
+    "throughput" : 1.0212209717938767,
+    "receivedKBytesPerSec" : 0.4228493086334021,
+    "sentKBytesPerSec" : 0.31773535313821205
+  }
+}
