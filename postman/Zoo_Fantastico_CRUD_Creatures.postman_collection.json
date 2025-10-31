@@ -1,0 +1,219 @@
+{
+  "info": {
+    "_postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1",
+    "name": "Zoo Fantástico - CRUD Creatures",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Colección CRUD de criaturas con casos normales y caso de eliminación en estado crítico (422). Usa {{baseUrl}} y {{zoneId}} del environment."
+  },
+  "item": [
+    {
+      "name": "POST Crear Criatura",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/creatures",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "creatures"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Creature created successfully\", function () {",
+              "  pm.response.to.have.status(201);",
+              "  const jsonData = pm.response.json();",
+              "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+              "});",
+              "",
+              "// Guardar ID para siguientes requests",
+              "const jsonData = pm.response.json();",
+              "pm.environment.set(\"creatureId\", jsonData.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Lista de Criaturas",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/creatures",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "creatures"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"List retrieved\", function () {",
+              "  pm.response.to.have.status(200);",
+              "  const jsonData = pm.response.json();",
+              "  pm.expect(jsonData.length).to.be.above(0);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GET Criatura por ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/creatures/{{creatureId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "creatures", "{{creatureId}}"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Creature retrieved successfully\", function () {",
+              "  pm.response.to.have.status(200);",
+              "  const jsonData = pm.response.json();",
+              "  pm.expect(jsonData).to.have.property(\"id\");",
+              "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUT Actualizar Criatura",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/creatures/{{creatureId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "creatures", "{{creatureId}}"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Creature updated successfully\", function () {",
+              "  pm.response.to.have.status(200);",
+              "  const jsonData = pm.response.json();",
+              "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "DELETE Eliminar Criatura",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{baseUrl}}/api/creatures/{{creatureId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "creatures", "{{creatureId}}"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Creature deleted successfully\", function () {",
+              "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST Crear Criatura CRÍTICA",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/creatures",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "creatures"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Critical creature created\", function () {",
+              "  pm.response.to.have.status(201);",
+              "  const jsonData = pm.response.json();",
+              "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+              "});",
+              "",
+              "// Guardar ID crítico",
+              "const critical = pm.response.json();",
+              "pm.environment.set(\"criticalCreatureId\", critical.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "DELETE Criatura CRÍTICA (espera 422)",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{baseUrl}}/api/creatures/{{criticalCreatureId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "creatures", "{{criticalCreatureId}}"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+              "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+              "  pm.expect(pm.response.code).to.eql(422);",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

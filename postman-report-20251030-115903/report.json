@@ -1,0 +1,5519 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1"
+    },
+    "item": [
+      {
+        "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+        "name": "POST Crear Criatura",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Creature created successfully\", function () {",
+                "  pm.response.to.have.status(201);",
+                "  const jsonData = pm.response.json();",
+                "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                "});",
+                "",
+                "// Guardar ID para siguientes requests",
+                "const jsonData = pm.response.json();",
+                "pm.environment.set(\"creatureId\", jsonData.id);"
+              ],
+              "_lastExecutionId": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+            }
+          }
+        ]
+      },
+      {
+        "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+        "name": "GET Lista de Criaturas",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"List retrieved\", function () {",
+                "  pm.response.to.have.status(200);",
+                "  const jsonData = pm.response.json();",
+                "  pm.expect(jsonData.length).to.be.above(0);",
+                "});"
+              ],
+              "_lastExecutionId": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+            }
+          }
+        ]
+      },
+      {
+        "id": "fceb028a-970f-4292-826b-98c1157dda46",
+        "name": "GET Criatura por ID",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures",
+              "{{creatureId}}"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Creature retrieved successfully\", function () {",
+                "  pm.response.to.have.status(200);",
+                "  const jsonData = pm.response.json();",
+                "  pm.expect(jsonData).to.have.property(\"id\");",
+                "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                "});"
+              ],
+              "_lastExecutionId": "c95a3d91-e190-471c-832d-5c8623827cda"
+            }
+          }
+        ]
+      },
+      {
+        "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+        "name": "PUT Actualizar Criatura",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures",
+              "{{creatureId}}"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Creature updated successfully\", function () {",
+                "  pm.response.to.have.status(200);",
+                "  const jsonData = pm.response.json();",
+                "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                "});"
+              ],
+              "_lastExecutionId": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+            }
+          }
+        ]
+      },
+      {
+        "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+        "name": "DELETE Eliminar Criatura",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures",
+              "{{creatureId}}"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "DELETE"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "ca4db826-509f-47c7-ba7c-beea15f47184",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Creature deleted successfully\", function () {",
+                "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                "});"
+              ],
+              "_lastExecutionId": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+        "name": "POST Crear Criatura CRÍTICA",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Critical creature created\", function () {",
+                "  pm.response.to.have.status(201);",
+                "  const jsonData = pm.response.json();",
+                "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                "});",
+                "",
+                "// Guardar ID crítico",
+                "const critical = pm.response.json();",
+                "pm.environment.set(\"criticalCreatureId\", critical.id);"
+              ],
+              "_lastExecutionId": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+            }
+          }
+        ]
+      },
+      {
+        "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+        "name": "DELETE Criatura CRÍTICA (espera 422)",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures",
+              "{{criticalCreatureId}}"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "DELETE"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "1cd6ed27-6909-449a-aa41-995f08114362",
+              "type": "text/javascript",
+              "exec": [
+                "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                "  pm.expect(pm.response.code).to.eql(422);",
+                "});"
+              ],
+              "_lastExecutionId": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+            }
+          }
+        ]
+      }
+    ],
+    "event": [],
+    "variable": [],
+    "info": {
+      "_postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1",
+      "name": "Zoo Fantástico - CRUD Creatures",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": {
+        "content": "Colección CRUD de criaturas con casos normales y caso de eliminación en estado crítico (422). Usa {{baseUrl}} y {{zoneId}} del environment.",
+        "type": "text/plain"
+      }
+    }
+  },
+  "environment": {
+    "_": {
+      "postman_variable_scope": "environment",
+      "postman_exported_at": "2025-10-29T16:00:00.000Z",
+      "postman_exported_using": "Postman/11.69.2"
+    },
+    "id": "1d7ac73f-2c0e-494d-b2a2-cf27c42bbbb3",
+    "name": "Zoo Fantastico – Local",
+    "values": [
+      {
+        "type": "any",
+        "value": "http://localhost:8080",
+        "key": "baseUrl"
+      },
+      {
+        "type": "any",
+        "value": "1",
+        "key": "zoneId"
+      },
+      {
+        "type": "any",
+        "value": null,
+        "key": "creatureId"
+      },
+      {
+        "type": "any",
+        "value": null,
+        "key": "criticalCreatureId"
+      }
+    ]
+  },
+  "globals": {
+    "id": "31b4f43b-44c2-4e1c-b8d7-fae64b6efcc1",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 7,
+        "pending": 0,
+        "failed": 7
+      },
+      "testScripts": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 134.71428571428572,
+      "responseMin": 5,
+      "responseMax": 667,
+      "responseSd": 225.99918728407238,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1761843544677,
+      "completed": 1761843545747
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 7,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "2a72e131-d3fc-4ecf-991d-16bbab74fcf4",
+          "httpRequestId": "35cb89bb-1cfe-4c51-b1c4-8d348619d034"
+        },
+        "item": {
+          "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+          "name": "POST Crear Criatura",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature created successfully\", function () {",
+                  "  pm.response.to.have.status(201);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                  "});",
+                  "",
+                  "// Guardar ID para siguientes requests",
+                  "const jsonData = pm.response.json();",
+                  "pm.environment.set(\"creatureId\", jsonData.id);"
+                ],
+                "_lastExecutionId": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "8e24f3bd-242c-45b6-a9e4-6df9c1ee3a64",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "124",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": 1\n}"
+          }
+        },
+        "response": {
+          "id": "8aa25e0d-619a-4023-b934-9cf89b144e7e",
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "62eb8b99-bb08-44c7-a511-d4961592886a"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 16:59:05 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              116,
+              105,
+              109,
+              101,
+              115,
+              116,
+              97,
+              109,
+              112,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              53,
+              45,
+              49,
+              48,
+              45,
+              51,
+              48,
+              84,
+              49,
+              54,
+              58,
+              53,
+              57,
+              58,
+              48,
+              53,
+              46,
+              51,
+              49,
+              53,
+              57,
+              52,
+              52,
+              57,
+              55,
+              48,
+              90,
+              34,
+              44,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              52,
+              48,
+              52,
+              44,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              78,
+              111,
+              116,
+              32,
+              70,
+              111,
+              117,
+              110,
+              100,
+              34,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              90,
+              111,
+              110,
+              101,
+              32,
+              110,
+              111,
+              116,
+              32,
+              102,
+              111,
+              117,
+              110,
+              100,
+              58,
+              32,
+              49,
+              34,
+              44,
+              34,
+              112,
+              97,
+              116,
+              104,
+              34,
+              58,
+              34,
+              47,
+              97,
+              112,
+              105,
+              47,
+              99,
+              114,
+              101,
+              97,
+              116,
+              117,
+              114,
+              101,
+              115,
+              34,
+              44,
+              34,
+              116,
+              114,
+              97,
+              99,
+              101,
+              73,
+              100,
+              34,
+              58,
+              34,
+              54,
+              50,
+              101,
+              98,
+              56,
+              98,
+              57,
+              57,
+              45,
+              98,
+              98,
+              48,
+              56,
+              45,
+              52,
+              52,
+              99,
+              55,
+              45,
+              97,
+              53,
+              49,
+              49,
+              45,
+              100,
+              52,
+              57,
+              54,
+              49,
+              53,
+              57,
+              50,
+              56,
+              56,
+              54,
+              97,
+              34,
+              44,
+              34,
+              102,
+              105,
+              101,
+              108,
+              100,
+              69,
+              114,
+              114,
+              111,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 667,
+          "responseSize": 199
+        },
+        "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+        "assertions": [
+          {
+            "assertion": "Creature created successfully",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 0,
+              "test": "Creature created successfully",
+              "message": "expected response to have status code 201 but got 404",
+              "stack": "AssertionError: expected response to have status code 201 but got 404\n   at Object.eval sandbox-script.js:1:1)"
+            }
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "17f0dbaa-66f3-4a4a-b1de-6d94eb7bbee6",
+          "length": 7,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "bd6228fd-51ba-4553-a606-c57db3e3d692"
+        },
+        "item": {
+          "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+          "name": "GET Lista de Criaturas",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"List retrieved\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.length).to.be.above(0);",
+                  "});"
+                ],
+                "_lastExecutionId": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "bb46297a-5870-49a3-9ba6-efbc2a7f8e98",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "dc276f1f-c5b0-4026-9020-95da18a25ad4",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "cace5e51-fe08-4811-8248-27ccc119421e"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 16:59:05 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              93
+            ]
+          },
+          "cookie": [],
+          "responseTime": 195,
+          "responseSize": 2
+        },
+        "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+        "assertions": [
+          {
+            "assertion": "List retrieved",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 0,
+              "test": "List retrieved",
+              "message": "expected +0 to be above +0",
+              "stack": "AssertionError: expected +0 to be above +0\n   at Object.eval sandbox-script.js:1:2)"
+            }
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "c0dab97a-2088-4996-b4c5-577ef5c4b1ec",
+          "length": 7,
+          "cycles": 1,
+          "position": 2,
+          "iteration": 0,
+          "httpRequestId": "05998af4-b790-48da-b9c8-dffcd798750d"
+        },
+        "item": {
+          "id": "fceb028a-970f-4292-826b-98c1157dda46",
+          "name": "GET Criatura por ID",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{creatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature retrieved successfully\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData).to.have.property(\"id\");",
+                  "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                  "});"
+                ],
+                "_lastExecutionId": "c95a3d91-e190-471c-832d-5c8623827cda"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures",
+              "null"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "ea02c974-6cb5-40e7-93af-dd9a1dfe356b",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "e1c52ef2-4dcc-4022-a27b-990bffb6c510",
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "00123bb1-d411-4ee8-b7ea-3d6e296884d5"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 16:59:05 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              116,
+              105,
+              109,
+              101,
+              115,
+              116,
+              97,
+              109,
+              112,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              53,
+              45,
+              49,
+              48,
+              45,
+              51,
+              48,
+              84,
+              49,
+              54,
+              58,
+              53,
+              57,
+              58,
+              48,
+              53,
+              46,
+              54,
+              49,
+              53,
+              56,
+              55,
+              52,
+              56,
+              52,
+              53,
+              90,
+              34,
+              44,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              53,
+              48,
+              48,
+              44,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              73,
+              110,
+              116,
+              101,
+              114,
+              110,
+              97,
+              108,
+              32,
+              83,
+              101,
+              114,
+              118,
+              101,
+              114,
+              32,
+              69,
+              114,
+              114,
+              111,
+              114,
+              34,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              85,
+              110,
+              101,
+              120,
+              112,
+              101,
+              99,
+              116,
+              101,
+              100,
+              32,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              44,
+              34,
+              112,
+              97,
+              116,
+              104,
+              34,
+              58,
+              34,
+              47,
+              97,
+              112,
+              105,
+              47,
+              99,
+              114,
+              101,
+              97,
+              116,
+              117,
+              114,
+              101,
+              115,
+              47,
+              110,
+              117,
+              108,
+              108,
+              34,
+              44,
+              34,
+              116,
+              114,
+              97,
+              99,
+              101,
+              73,
+              100,
+              34,
+              58,
+              34,
+              48,
+              48,
+              49,
+              50,
+              51,
+              98,
+              98,
+              49,
+              45,
+              100,
+              52,
+              49,
+              49,
+              45,
+              52,
+              101,
+              101,
+              56,
+              45,
+              98,
+              55,
+              101,
+              97,
+              45,
+              51,
+              100,
+              54,
+              101,
+              50,
+              57,
+              54,
+              56,
+              56,
+              52,
+              100,
+              53,
+              34,
+              44,
+              34,
+              102,
+              105,
+              101,
+              108,
+              100,
+              69,
+              114,
+              114,
+              111,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 28,
+          "responseSize": 215
+        },
+        "id": "fceb028a-970f-4292-826b-98c1157dda46",
+        "assertions": [
+          {
+            "assertion": "Creature retrieved successfully",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 0,
+              "test": "Creature retrieved successfully",
+              "message": "expected response to have status code 200 but got 500",
+              "stack": "AssertionError: expected response to have status code 200 but got 500\n   at Object.eval sandbox-script.js:1:3)"
+            }
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "e82ec6cd-329f-4ca4-9308-7310e82b188a",
+          "length": 7,
+          "cycles": 1,
+          "position": 3,
+          "iteration": 0,
+          "httpRequestId": "5117acba-67fa-43db-a332-b13c4df939f8"
+        },
+        "item": {
+          "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+          "name": "PUT Actualizar Criatura",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{creatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature updated successfully\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                  "});"
+                ],
+                "_lastExecutionId": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures",
+              "null"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "aac8ea74-14b2-42c2-b9f7-1144f9d7f5dd",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "114",
+              "system": true
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+          }
+        },
+        "response": {
+          "id": "cefc40d3-aea9-4bf2-8d29-4068766bc373",
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "ecd12a30-4dc8-4be0-b9ba-2cf823924011"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 16:59:05 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              116,
+              105,
+              109,
+              101,
+              115,
+              116,
+              97,
+              109,
+              112,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              53,
+              45,
+              49,
+              48,
+              45,
+              51,
+              48,
+              84,
+              49,
+              54,
+              58,
+              53,
+              57,
+              58,
+              48,
+              53,
+              46,
+              54,
+              52,
+              55,
+              50,
+              49,
+              50,
+              51,
+              56,
+              55,
+              90,
+              34,
+              44,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              53,
+              48,
+              48,
+              44,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              73,
+              110,
+              116,
+              101,
+              114,
+              110,
+              97,
+              108,
+              32,
+              83,
+              101,
+              114,
+              118,
+              101,
+              114,
+              32,
+              69,
+              114,
+              114,
+              111,
+              114,
+              34,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              85,
+              110,
+              101,
+              120,
+              112,
+              101,
+              99,
+              116,
+              101,
+              100,
+              32,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              44,
+              34,
+              112,
+              97,
+              116,
+              104,
+              34,
+              58,
+              34,
+              47,
+              97,
+              112,
+              105,
+              47,
+              99,
+              114,
+              101,
+              97,
+              116,
+              117,
+              114,
+              101,
+              115,
+              47,
+              110,
+              117,
+              108,
+              108,
+              34,
+              44,
+              34,
+              116,
+              114,
+              97,
+              99,
+              101,
+              73,
+              100,
+              34,
+              58,
+              34,
+              101,
+              99,
+              100,
+              49,
+              50,
+              97,
+              51,
+              48,
+              45,
+              52,
+              100,
+              99,
+              56,
+              45,
+              52,
+              98,
+              101,
+              48,
+              45,
+              98,
+              57,
+              98,
+              97,
+              45,
+              50,
+              99,
+              102,
+              56,
+              50,
+              51,
+              57,
+              50,
+              52,
+              48,
+              49,
+              49,
+              34,
+              44,
+              34,
+              102,
+              105,
+              101,
+              108,
+              100,
+              69,
+              114,
+              114,
+              111,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 23,
+          "responseSize": 215
+        },
+        "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+        "assertions": [
+          {
+            "assertion": "Creature updated successfully",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 0,
+              "test": "Creature updated successfully",
+              "message": "expected response to have status code 200 but got 500",
+              "stack": "AssertionError: expected response to have status code 200 but got 500\n   at Object.eval sandbox-script.js:1:4)"
+            }
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "19125ce6-d0eb-436b-9074-54e60d6a33b5",
+          "length": 7,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "58c1b73d-d6ba-4df3-9969-5d7afafe80b1"
+        },
+        "item": {
+          "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+          "name": "DELETE Eliminar Criatura",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{creatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ca4db826-509f-47c7-ba7c-beea15f47184",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature deleted successfully\", function () {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                  "});"
+                ],
+                "_lastExecutionId": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures",
+              "null"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "ca4fc8f9-58ed-488b-a8c5-affbb4bf4822",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "DELETE"
+        },
+        "response": {
+          "id": "0493f807-a78b-4aad-816e-8fdf30e6248f",
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "c0c65368-9e78-4020-8027-3f30e299a581"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 16:59:05 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              116,
+              105,
+              109,
+              101,
+              115,
+              116,
+              97,
+              109,
+              112,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              53,
+              45,
+              49,
+              48,
+              45,
+              51,
+              48,
+              84,
+              49,
+              54,
+              58,
+              53,
+              57,
+              58,
+              48,
+              53,
+              46,
+              54,
+              56,
+              50,
+              49,
+              48,
+              53,
+              55,
+              54,
+              50,
+              90,
+              34,
+              44,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              53,
+              48,
+              48,
+              44,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              73,
+              110,
+              116,
+              101,
+              114,
+              110,
+              97,
+              108,
+              32,
+              83,
+              101,
+              114,
+              118,
+              101,
+              114,
+              32,
+              69,
+              114,
+              114,
+              111,
+              114,
+              34,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              85,
+              110,
+              101,
+              120,
+              112,
+              101,
+              99,
+              116,
+              101,
+              100,
+              32,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              44,
+              34,
+              112,
+              97,
+              116,
+              104,
+              34,
+              58,
+              34,
+              47,
+              97,
+              112,
+              105,
+              47,
+              99,
+              114,
+              101,
+              97,
+              116,
+              117,
+              114,
+              101,
+              115,
+              47,
+              110,
+              117,
+              108,
+              108,
+              34,
+              44,
+              34,
+              116,
+              114,
+              97,
+              99,
+              101,
+              73,
+              100,
+              34,
+              58,
+              34,
+              99,
+              48,
+              99,
+              54,
+              53,
+              51,
+              54,
+              56,
+              45,
+              57,
+              101,
+              55,
+              56,
+              45,
+              52,
+              48,
+              50,
+              48,
+              45,
+              56,
+              48,
+              50,
+              55,
+              45,
+              51,
+              102,
+              51,
+              48,
+              101,
+              50,
+              57,
+              57,
+              97,
+              53,
+              56,
+              49,
+              34,
+              44,
+              34,
+              102,
+              105,
+              101,
+              108,
+              100,
+              69,
+              114,
+              114,
+              111,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 13,
+          "responseSize": 215
+        },
+        "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+        "assertions": [
+          {
+            "assertion": "Creature deleted successfully",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 0,
+              "test": "Creature deleted successfully",
+              "message": "expected 500 to be one of [ 200, 204 ]",
+              "stack": "AssertionError: expected 500 to be one of [ 200, 204 ]\n   at Object.eval sandbox-script.js:1:5)"
+            }
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "f521637a-b4a8-4eef-b215-a85eb01452f6",
+          "length": 7,
+          "cycles": 1,
+          "position": 5,
+          "iteration": 0,
+          "httpRequestId": "c448b615-4fc0-4412-8b00-292ac8133035"
+        },
+        "item": {
+          "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+          "name": "POST Crear Criatura CRÍTICA",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Critical creature created\", function () {",
+                  "  pm.response.to.have.status(201);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                  "});",
+                  "",
+                  "// Guardar ID crítico",
+                  "const critical = pm.response.json();",
+                  "pm.environment.set(\"criticalCreatureId\", critical.id);"
+                ],
+                "_lastExecutionId": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "b6bb477a-5880-4fee-8b8c-518a221274f7",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "136",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": 1\n}"
+          }
+        },
+        "response": {
+          "id": "b92485a4-d14c-4934-9993-72384234b138",
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "c2c391af-c02c-4971-9acc-d4b278df9fd1"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 16:59:05 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              116,
+              105,
+              109,
+              101,
+              115,
+              116,
+              97,
+              109,
+              112,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              53,
+              45,
+              49,
+              48,
+              45,
+              51,
+              48,
+              84,
+              49,
+              54,
+              58,
+              53,
+              57,
+              58,
+              48,
+              53,
+              46,
+              55,
+              49,
+              49,
+              54,
+              52,
+              52,
+              50,
+              54,
+              50,
+              90,
+              34,
+              44,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              52,
+              48,
+              52,
+              44,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              78,
+              111,
+              116,
+              32,
+              70,
+              111,
+              117,
+              110,
+              100,
+              34,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              90,
+              111,
+              110,
+              101,
+              32,
+              110,
+              111,
+              116,
+              32,
+              102,
+              111,
+              117,
+              110,
+              100,
+              58,
+              32,
+              49,
+              34,
+              44,
+              34,
+              112,
+              97,
+              116,
+              104,
+              34,
+              58,
+              34,
+              47,
+              97,
+              112,
+              105,
+              47,
+              99,
+              114,
+              101,
+              97,
+              116,
+              117,
+              114,
+              101,
+              115,
+              34,
+              44,
+              34,
+              116,
+              114,
+              97,
+              99,
+              101,
+              73,
+              100,
+              34,
+              58,
+              34,
+              99,
+              50,
+              99,
+              51,
+              57,
+              49,
+              97,
+              102,
+              45,
+              99,
+              48,
+              50,
+              99,
+              45,
+              52,
+              57,
+              55,
+              49,
+              45,
+              57,
+              97,
+              99,
+              99,
+              45,
+              100,
+              52,
+              98,
+              50,
+              55,
+              56,
+              100,
+              102,
+              57,
+              102,
+              100,
+              49,
+              34,
+              44,
+              34,
+              102,
+              105,
+              101,
+              108,
+              100,
+              69,
+              114,
+              114,
+              111,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 12,
+          "responseSize": 199
+        },
+        "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+        "assertions": [
+          {
+            "assertion": "Critical creature created",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 0,
+              "test": "Critical creature created",
+              "message": "expected response to have status code 201 but got 404",
+              "stack": "AssertionError: expected response to have status code 201 but got 404\n   at Object.eval sandbox-script.js:1:6)"
+            }
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "8353c5a3-8abf-4f40-9c12-f4c691af2cd1",
+          "length": 7,
+          "cycles": 1,
+          "position": 6,
+          "iteration": 0,
+          "httpRequestId": "615422e4-546c-4481-96ac-d7be9da970a6"
+        },
+        "item": {
+          "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+          "name": "DELETE Criatura CRÍTICA (espera 422)",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{criticalCreatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "1cd6ed27-6909-449a-aa41-995f08114362",
+                "type": "text/javascript",
+                "exec": [
+                  "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                  "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                  "  pm.expect(pm.response.code).to.eql(422);",
+                  "});"
+                ],
+                "_lastExecutionId": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures",
+              "null"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "560b152a-5e3e-450a-a641-b38ab6db310c",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "DELETE"
+        },
+        "response": {
+          "id": "f81f310e-565b-40a3-9abd-2e40de0a7448",
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "fe5e8c06-ab28-443b-a016-547e8b382944"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 16:59:05 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "close"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              116,
+              105,
+              109,
+              101,
+              115,
+              116,
+              97,
+              109,
+              112,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              53,
+              45,
+              49,
+              48,
+              45,
+              51,
+              48,
+              84,
+              49,
+              54,
+              58,
+              53,
+              57,
+              58,
+              48,
+              53,
+              46,
+              55,
+              51,
+              48,
+              56,
+              49,
+              49,
+              53,
+              53,
+              51,
+              90,
+              34,
+              44,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              53,
+              48,
+              48,
+              44,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              73,
+              110,
+              116,
+              101,
+              114,
+              110,
+              97,
+              108,
+              32,
+              83,
+              101,
+              114,
+              118,
+              101,
+              114,
+              32,
+              69,
+              114,
+              114,
+              111,
+              114,
+              34,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              85,
+              110,
+              101,
+              120,
+              112,
+              101,
+              99,
+              116,
+              101,
+              100,
+              32,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              44,
+              34,
+              112,
+              97,
+              116,
+              104,
+              34,
+              58,
+              34,
+              47,
+              97,
+              112,
+              105,
+              47,
+              99,
+              114,
+              101,
+              97,
+              116,
+              117,
+              114,
+              101,
+              115,
+              47,
+              110,
+              117,
+              108,
+              108,
+              34,
+              44,
+              34,
+              116,
+              114,
+              97,
+              99,
+              101,
+              73,
+              100,
+              34,
+              58,
+              34,
+              102,
+              101,
+              53,
+              101,
+              56,
+              99,
+              48,
+              54,
+              45,
+              97,
+              98,
+              50,
+              56,
+              45,
+              52,
+              52,
+              51,
+              98,
+              45,
+              97,
+              48,
+              49,
+              54,
+              45,
+              53,
+              52,
+              55,
+              101,
+              56,
+              98,
+              51,
+              56,
+              50,
+              57,
+              52,
+              52,
+              34,
+              44,
+              34,
+              102,
+              105,
+              101,
+              108,
+              100,
+              69,
+              114,
+              114,
+              111,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 5,
+          "responseSize": 215
+        },
+        "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+        "assertions": [
+          {
+            "assertion": "Delete blocked for critical creature (422)",
+            "skipped": false,
+            "error": {
+              "name": "AssertionError",
+              "index": 0,
+              "test": "Delete blocked for critical creature (422)",
+              "message": "expected 500 to deeply equal 422",
+              "stack": "AssertionError: expected 500 to deeply equal 422\n   at Object.eval sandbox-script.js:1:7)"
+            }
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 1260
+    },
+    "failures": [
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 0,
+          "test": "Creature created successfully",
+          "message": "expected response to have status code 201 but got 404",
+          "stack": "AssertionError: expected response to have status code 201 but got 404\n   at Object.eval sandbox-script.js:1:1)",
+          "checksum": "457a38927c1484896cc5c104f184dc74",
+          "id": "4673b286-7fa5-42fe-9134-4ea41d007d13",
+          "timestamp": 1761843545372,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 1,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 1,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:0 in test-script",
+        "source": {
+          "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+          "name": "POST Crear Criatura",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature created successfully\", function () {",
+                  "  pm.response.to.have.status(201);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                  "});",
+                  "",
+                  "// Guardar ID para siguientes requests",
+                  "const jsonData = pm.response.json();",
+                  "pm.environment.set(\"creatureId\", jsonData.id);"
+                ],
+                "_lastExecutionId": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1"
+          },
+          "item": [
+            {
+              "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+              "name": "POST Crear Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature created successfully\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});",
+                      "",
+                      "// Guardar ID para siguientes requests",
+                      "const jsonData = pm.response.json();",
+                      "pm.environment.set(\"creatureId\", jsonData.id);"
+                    ],
+                    "_lastExecutionId": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+              "name": "GET Lista de Criaturas",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"List retrieved\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.length).to.be.above(0);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "fceb028a-970f-4292-826b-98c1157dda46",
+              "name": "GET Criatura por ID",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature retrieved successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData).to.have.property(\"id\");",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "c95a3d91-e190-471c-832d-5c8623827cda"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+              "name": "PUT Actualizar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature updated successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+              "name": "DELETE Eliminar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "ca4db826-509f-47c7-ba7c-beea15f47184",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature deleted successfully\", function () {",
+                      "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+              "name": "POST Crear Criatura CRÍTICA",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Critical creature created\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                      "});",
+                      "",
+                      "// Guardar ID crítico",
+                      "const critical = pm.response.json();",
+                      "pm.environment.set(\"criticalCreatureId\", critical.id);"
+                    ],
+                    "_lastExecutionId": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+              "name": "DELETE Criatura CRÍTICA (espera 422)",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{criticalCreatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1cd6ed27-6909-449a-aa41-995f08114362",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                      "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                      "  pm.expect(pm.response.code).to.eql(422);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+                  }
+                }
+              ]
+            }
+          ],
+          "event": [],
+          "variable": [],
+          "info": {
+            "_postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1",
+            "name": "Zoo Fantástico - CRUD Creatures",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "description": {
+              "content": "Colección CRUD de criaturas con casos normales y caso de eliminación en estado crítico (422). Usa {{baseUrl}} y {{zoneId}} del environment.",
+              "type": "text/plain"
+            }
+          }
+        },
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 7,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "2a72e131-d3fc-4ecf-991d-16bbab74fcf4",
+          "httpRequestId": "35cb89bb-1cfe-4c51-b1c4-8d348619d034",
+          "scriptId": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+          "execution": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+        }
+      },
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 0,
+          "test": "List retrieved",
+          "message": "expected +0 to be above +0",
+          "stack": "AssertionError: expected +0 to be above +0\n   at Object.eval sandbox-script.js:1:2)",
+          "checksum": "1d718ef8d3f9c4400e6256e65e39b1b9",
+          "id": "a976a000-2ad1-4d8c-921b-f2e5d84da229",
+          "timestamp": 1761843545587,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 1,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 2,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:0 in test-script",
+        "source": {
+          "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+          "name": "GET Lista de Criaturas",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"List retrieved\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.length).to.be.above(0);",
+                  "});"
+                ],
+                "_lastExecutionId": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1"
+          },
+          "item": [
+            {
+              "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+              "name": "POST Crear Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature created successfully\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});",
+                      "",
+                      "// Guardar ID para siguientes requests",
+                      "const jsonData = pm.response.json();",
+                      "pm.environment.set(\"creatureId\", jsonData.id);"
+                    ],
+                    "_lastExecutionId": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+              "name": "GET Lista de Criaturas",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"List retrieved\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.length).to.be.above(0);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "fceb028a-970f-4292-826b-98c1157dda46",
+              "name": "GET Criatura por ID",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature retrieved successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData).to.have.property(\"id\");",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "c95a3d91-e190-471c-832d-5c8623827cda"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+              "name": "PUT Actualizar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature updated successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+              "name": "DELETE Eliminar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "ca4db826-509f-47c7-ba7c-beea15f47184",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature deleted successfully\", function () {",
+                      "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+              "name": "POST Crear Criatura CRÍTICA",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Critical creature created\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                      "});",
+                      "",
+                      "// Guardar ID crítico",
+                      "const critical = pm.response.json();",
+                      "pm.environment.set(\"criticalCreatureId\", critical.id);"
+                    ],
+                    "_lastExecutionId": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+              "name": "DELETE Criatura CRÍTICA (espera 422)",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{criticalCreatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1cd6ed27-6909-449a-aa41-995f08114362",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                      "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                      "  pm.expect(pm.response.code).to.eql(422);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+                  }
+                }
+              ]
+            }
+          ],
+          "event": [],
+          "variable": [],
+          "info": {
+            "_postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1",
+            "name": "Zoo Fantástico - CRUD Creatures",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "description": {
+              "content": "Colección CRUD de criaturas con casos normales y caso de eliminación en estado crítico (422). Usa {{baseUrl}} y {{zoneId}} del environment.",
+              "type": "text/plain"
+            }
+          }
+        },
+        "cursor": {
+          "ref": "17f0dbaa-66f3-4a4a-b1de-6d94eb7bbee6",
+          "length": 7,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "bd6228fd-51ba-4553-a606-c57db3e3d692",
+          "scriptId": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+          "execution": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+        }
+      },
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 0,
+          "test": "Creature retrieved successfully",
+          "message": "expected response to have status code 200 but got 500",
+          "stack": "AssertionError: expected response to have status code 200 but got 500\n   at Object.eval sandbox-script.js:1:3)",
+          "checksum": "18b906b22bf5d3d44bef8e45f2cd7ff3",
+          "id": "ed07167e-98c1-4e89-b4b5-cd89006b0f38",
+          "timestamp": 1761843545629,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 1,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 3,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:0 in test-script",
+        "source": {
+          "id": "fceb028a-970f-4292-826b-98c1157dda46",
+          "name": "GET Criatura por ID",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{creatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature retrieved successfully\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData).to.have.property(\"id\");",
+                  "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                  "});"
+                ],
+                "_lastExecutionId": "c95a3d91-e190-471c-832d-5c8623827cda"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1"
+          },
+          "item": [
+            {
+              "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+              "name": "POST Crear Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature created successfully\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});",
+                      "",
+                      "// Guardar ID para siguientes requests",
+                      "const jsonData = pm.response.json();",
+                      "pm.environment.set(\"creatureId\", jsonData.id);"
+                    ],
+                    "_lastExecutionId": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+              "name": "GET Lista de Criaturas",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"List retrieved\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.length).to.be.above(0);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "fceb028a-970f-4292-826b-98c1157dda46",
+              "name": "GET Criatura por ID",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature retrieved successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData).to.have.property(\"id\");",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "c95a3d91-e190-471c-832d-5c8623827cda"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+              "name": "PUT Actualizar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature updated successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+              "name": "DELETE Eliminar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "ca4db826-509f-47c7-ba7c-beea15f47184",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature deleted successfully\", function () {",
+                      "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+              "name": "POST Crear Criatura CRÍTICA",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Critical creature created\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                      "});",
+                      "",
+                      "// Guardar ID crítico",
+                      "const critical = pm.response.json();",
+                      "pm.environment.set(\"criticalCreatureId\", critical.id);"
+                    ],
+                    "_lastExecutionId": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+              "name": "DELETE Criatura CRÍTICA (espera 422)",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{criticalCreatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1cd6ed27-6909-449a-aa41-995f08114362",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                      "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                      "  pm.expect(pm.response.code).to.eql(422);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+                  }
+                }
+              ]
+            }
+          ],
+          "event": [],
+          "variable": [],
+          "info": {
+            "_postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1",
+            "name": "Zoo Fantástico - CRUD Creatures",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "description": {
+              "content": "Colección CRUD de criaturas con casos normales y caso de eliminación en estado crítico (422). Usa {{baseUrl}} y {{zoneId}} del environment.",
+              "type": "text/plain"
+            }
+          }
+        },
+        "cursor": {
+          "ref": "c0dab97a-2088-4996-b4c5-577ef5c4b1ec",
+          "length": 7,
+          "cycles": 1,
+          "position": 2,
+          "iteration": 0,
+          "httpRequestId": "05998af4-b790-48da-b9c8-dffcd798750d",
+          "scriptId": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+          "execution": "c95a3d91-e190-471c-832d-5c8623827cda"
+        }
+      },
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 0,
+          "test": "Creature updated successfully",
+          "message": "expected response to have status code 200 but got 500",
+          "stack": "AssertionError: expected response to have status code 200 but got 500\n   at Object.eval sandbox-script.js:1:4)",
+          "checksum": "1d2efd2deacf4d4adc73f636cd20c3b8",
+          "id": "d958c4ef-5c09-4ea7-a5c1-7cebb85fc373",
+          "timestamp": 1761843545670,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 1,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 4,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:0 in test-script",
+        "source": {
+          "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+          "name": "PUT Actualizar Criatura",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{creatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature updated successfully\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                  "});"
+                ],
+                "_lastExecutionId": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1"
+          },
+          "item": [
+            {
+              "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+              "name": "POST Crear Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature created successfully\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});",
+                      "",
+                      "// Guardar ID para siguientes requests",
+                      "const jsonData = pm.response.json();",
+                      "pm.environment.set(\"creatureId\", jsonData.id);"
+                    ],
+                    "_lastExecutionId": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+              "name": "GET Lista de Criaturas",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"List retrieved\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.length).to.be.above(0);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "fceb028a-970f-4292-826b-98c1157dda46",
+              "name": "GET Criatura por ID",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature retrieved successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData).to.have.property(\"id\");",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "c95a3d91-e190-471c-832d-5c8623827cda"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+              "name": "PUT Actualizar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature updated successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+              "name": "DELETE Eliminar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "ca4db826-509f-47c7-ba7c-beea15f47184",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature deleted successfully\", function () {",
+                      "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+              "name": "POST Crear Criatura CRÍTICA",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Critical creature created\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                      "});",
+                      "",
+                      "// Guardar ID crítico",
+                      "const critical = pm.response.json();",
+                      "pm.environment.set(\"criticalCreatureId\", critical.id);"
+                    ],
+                    "_lastExecutionId": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+              "name": "DELETE Criatura CRÍTICA (espera 422)",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{criticalCreatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1cd6ed27-6909-449a-aa41-995f08114362",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                      "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                      "  pm.expect(pm.response.code).to.eql(422);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+                  }
+                }
+              ]
+            }
+          ],
+          "event": [],
+          "variable": [],
+          "info": {
+            "_postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1",
+            "name": "Zoo Fantástico - CRUD Creatures",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "description": {
+              "content": "Colección CRUD de criaturas con casos normales y caso de eliminación en estado crítico (422). Usa {{baseUrl}} y {{zoneId}} del environment.",
+              "type": "text/plain"
+            }
+          }
+        },
+        "cursor": {
+          "ref": "e82ec6cd-329f-4ca4-9308-7310e82b188a",
+          "length": 7,
+          "cycles": 1,
+          "position": 3,
+          "iteration": 0,
+          "httpRequestId": "5117acba-67fa-43db-a332-b13c4df939f8",
+          "scriptId": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+          "execution": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+        }
+      },
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 0,
+          "test": "Creature deleted successfully",
+          "message": "expected 500 to be one of [ 200, 204 ]",
+          "stack": "AssertionError: expected 500 to be one of [ 200, 204 ]\n   at Object.eval sandbox-script.js:1:5)",
+          "checksum": "b67b303f663795ea9c9b58f68e9d51b6",
+          "id": "019e2405-be53-4ca0-9dec-e5fa72baab37",
+          "timestamp": 1761843545699,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 1,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 5,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:0 in test-script",
+        "source": {
+          "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+          "name": "DELETE Eliminar Criatura",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{creatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ca4db826-509f-47c7-ba7c-beea15f47184",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature deleted successfully\", function () {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                  "});"
+                ],
+                "_lastExecutionId": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1"
+          },
+          "item": [
+            {
+              "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+              "name": "POST Crear Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature created successfully\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});",
+                      "",
+                      "// Guardar ID para siguientes requests",
+                      "const jsonData = pm.response.json();",
+                      "pm.environment.set(\"creatureId\", jsonData.id);"
+                    ],
+                    "_lastExecutionId": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+              "name": "GET Lista de Criaturas",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"List retrieved\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.length).to.be.above(0);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "fceb028a-970f-4292-826b-98c1157dda46",
+              "name": "GET Criatura por ID",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature retrieved successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData).to.have.property(\"id\");",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "c95a3d91-e190-471c-832d-5c8623827cda"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+              "name": "PUT Actualizar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature updated successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+              "name": "DELETE Eliminar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "ca4db826-509f-47c7-ba7c-beea15f47184",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature deleted successfully\", function () {",
+                      "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+              "name": "POST Crear Criatura CRÍTICA",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Critical creature created\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                      "});",
+                      "",
+                      "// Guardar ID crítico",
+                      "const critical = pm.response.json();",
+                      "pm.environment.set(\"criticalCreatureId\", critical.id);"
+                    ],
+                    "_lastExecutionId": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+              "name": "DELETE Criatura CRÍTICA (espera 422)",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{criticalCreatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1cd6ed27-6909-449a-aa41-995f08114362",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                      "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                      "  pm.expect(pm.response.code).to.eql(422);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+                  }
+                }
+              ]
+            }
+          ],
+          "event": [],
+          "variable": [],
+          "info": {
+            "_postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1",
+            "name": "Zoo Fantástico - CRUD Creatures",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "description": {
+              "content": "Colección CRUD de criaturas con casos normales y caso de eliminación en estado crítico (422). Usa {{baseUrl}} y {{zoneId}} del environment.",
+              "type": "text/plain"
+            }
+          }
+        },
+        "cursor": {
+          "ref": "19125ce6-d0eb-436b-9074-54e60d6a33b5",
+          "length": 7,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "58c1b73d-d6ba-4df3-9969-5d7afafe80b1",
+          "scriptId": "ca4db826-509f-47c7-ba7c-beea15f47184",
+          "execution": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+        }
+      },
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 0,
+          "test": "Critical creature created",
+          "message": "expected response to have status code 201 but got 404",
+          "stack": "AssertionError: expected response to have status code 201 but got 404\n   at Object.eval sandbox-script.js:1:6)",
+          "checksum": "7e54a68f4549b9f2aac658a5b0b6336f",
+          "id": "2176fabf-9062-42a5-9a5d-5766cb77ae9f",
+          "timestamp": 1761843545727,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 1,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 6,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:0 in test-script",
+        "source": {
+          "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+          "name": "POST Crear Criatura CRÍTICA",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Critical creature created\", function () {",
+                  "  pm.response.to.have.status(201);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                  "});",
+                  "",
+                  "// Guardar ID crítico",
+                  "const critical = pm.response.json();",
+                  "pm.environment.set(\"criticalCreatureId\", critical.id);"
+                ],
+                "_lastExecutionId": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1"
+          },
+          "item": [
+            {
+              "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+              "name": "POST Crear Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature created successfully\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});",
+                      "",
+                      "// Guardar ID para siguientes requests",
+                      "const jsonData = pm.response.json();",
+                      "pm.environment.set(\"creatureId\", jsonData.id);"
+                    ],
+                    "_lastExecutionId": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+              "name": "GET Lista de Criaturas",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"List retrieved\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.length).to.be.above(0);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "fceb028a-970f-4292-826b-98c1157dda46",
+              "name": "GET Criatura por ID",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature retrieved successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData).to.have.property(\"id\");",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "c95a3d91-e190-471c-832d-5c8623827cda"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+              "name": "PUT Actualizar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature updated successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+              "name": "DELETE Eliminar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "ca4db826-509f-47c7-ba7c-beea15f47184",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature deleted successfully\", function () {",
+                      "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+              "name": "POST Crear Criatura CRÍTICA",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Critical creature created\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                      "});",
+                      "",
+                      "// Guardar ID crítico",
+                      "const critical = pm.response.json();",
+                      "pm.environment.set(\"criticalCreatureId\", critical.id);"
+                    ],
+                    "_lastExecutionId": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+              "name": "DELETE Criatura CRÍTICA (espera 422)",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{criticalCreatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1cd6ed27-6909-449a-aa41-995f08114362",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                      "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                      "  pm.expect(pm.response.code).to.eql(422);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+                  }
+                }
+              ]
+            }
+          ],
+          "event": [],
+          "variable": [],
+          "info": {
+            "_postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1",
+            "name": "Zoo Fantástico - CRUD Creatures",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "description": {
+              "content": "Colección CRUD de criaturas con casos normales y caso de eliminación en estado crítico (422). Usa {{baseUrl}} y {{zoneId}} del environment.",
+              "type": "text/plain"
+            }
+          }
+        },
+        "cursor": {
+          "ref": "f521637a-b4a8-4eef-b215-a85eb01452f6",
+          "length": 7,
+          "cycles": 1,
+          "position": 5,
+          "iteration": 0,
+          "httpRequestId": "c448b615-4fc0-4412-8b00-292ac8133035",
+          "scriptId": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+          "execution": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+        }
+      },
+      {
+        "error": {
+          "name": "AssertionError",
+          "index": 0,
+          "test": "Delete blocked for critical creature (422)",
+          "message": "expected 500 to deeply equal 422",
+          "stack": "AssertionError: expected 500 to deeply equal 422\n   at Object.eval sandbox-script.js:1:7)",
+          "checksum": "f5bcc8fecaac0deb57f80b346a204f39",
+          "id": "c015e3f2-5ca7-45ff-9213-b29239bb959a",
+          "timestamp": 1761843545744,
+          "stacktrace": [
+            {
+              "fileName": "sandbox-script.js",
+              "lineNumber": 1,
+              "functionName": "Object.eval",
+              "typeName": "Object",
+              "methodName": "eval",
+              "columnNumber": 7,
+              "native": false
+            }
+          ]
+        },
+        "at": "assertion:0 in test-script",
+        "source": {
+          "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+          "name": "DELETE Criatura CRÍTICA (espera 422)",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{criticalCreatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "1cd6ed27-6909-449a-aa41-995f08114362",
+                "type": "text/javascript",
+                "exec": [
+                  "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                  "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                  "  pm.expect(pm.response.code).to.eql(422);",
+                  "});"
+                ],
+                "_lastExecutionId": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+              }
+            }
+          ]
+        },
+        "parent": {
+          "_": {
+            "postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1"
+          },
+          "item": [
+            {
+              "id": "95f81df8-3fb4-4fbd-91a8-c8794a6a2423",
+              "name": "POST Crear Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "8ce27454-c3ef-4e57-a780-190c962cacc1",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature created successfully\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});",
+                      "",
+                      "// Guardar ID para siguientes requests",
+                      "const jsonData = pm.response.json();",
+                      "pm.environment.set(\"creatureId\", jsonData.id);"
+                    ],
+                    "_lastExecutionId": "248ad7cc-5318-49b4-8ae1-e869d1aa3bab"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "45232cbd-7365-4301-a5c8-e1b74dca962c",
+              "name": "GET Lista de Criaturas",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "7da64e7d-44b3-41b0-ad62-8a2d594766d8",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"List retrieved\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.length).to.be.above(0);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "9aab4f04-da68-4045-a25a-1e17c5d1ea5d"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "fceb028a-970f-4292-826b-98c1157dda46",
+              "name": "GET Criatura por ID",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "6869d731-3af5-43e0-9d2c-6735e6d7366d",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature retrieved successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData).to.have.property(\"id\");",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "c95a3d91-e190-471c-832d-5c8623827cda"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "61bc935f-0caa-4427-ae23-13d0c764014a",
+              "name": "PUT Actualizar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "aa313ae0-fc3e-49c0-8e7f-7d2d7eee3f7e",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature updated successfully\", function () {",
+                      "  pm.response.to.have.status(200);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                      "});"
+                    ],
+                    "_lastExecutionId": "29b5c40f-b291-4a21-96bc-5c67410040ec"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "64b8b546-020b-4554-a77a-e169b04cdd3e",
+              "name": "DELETE Eliminar Criatura",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{creatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "ca4db826-509f-47c7-ba7c-beea15f47184",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Creature deleted successfully\", function () {",
+                      "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "bbf12d95-5e0c-4678-9fe4-6d0189da92c1"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "c6a7dfeb-a5d2-41c5-a881-f6803eb3e4c4",
+              "name": "POST Crear Criatura CRÍTICA",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "e70951d5-6cba-43b4-89dc-e388f0e3b9f5",
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Critical creature created\", function () {",
+                      "  pm.response.to.have.status(201);",
+                      "  const jsonData = pm.response.json();",
+                      "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                      "});",
+                      "",
+                      "// Guardar ID crítico",
+                      "const critical = pm.response.json();",
+                      "pm.environment.set(\"criticalCreatureId\", critical.id);"
+                    ],
+                    "_lastExecutionId": "115d38bb-f7b1-4154-bd3e-d0249ebc70b9"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "74d79626-1fd8-475c-8edc-54c655b72532",
+              "name": "DELETE Criatura CRÍTICA (espera 422)",
+              "request": {
+                "url": {
+                  "path": [
+                    "api",
+                    "creatures",
+                    "{{criticalCreatureId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "DELETE"
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "id": "1cd6ed27-6909-449a-aa41-995f08114362",
+                    "type": "text/javascript",
+                    "exec": [
+                      "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                      "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                      "  pm.expect(pm.response.code).to.eql(422);",
+                      "});"
+                    ],
+                    "_lastExecutionId": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+                  }
+                }
+              ]
+            }
+          ],
+          "event": [],
+          "variable": [],
+          "info": {
+            "_postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1",
+            "name": "Zoo Fantástico - CRUD Creatures",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "description": {
+              "content": "Colección CRUD de criaturas con casos normales y caso de eliminación en estado crítico (422). Usa {{baseUrl}} y {{zoneId}} del environment.",
+              "type": "text/plain"
+            }
+          }
+        },
+        "cursor": {
+          "ref": "8353c5a3-8abf-4f40-9c12-f4c691af2cd1",
+          "length": 7,
+          "cycles": 1,
+          "position": 6,
+          "iteration": 0,
+          "httpRequestId": "615422e4-546c-4481-96ac-d7be9da970a6",
+          "scriptId": "1cd6ed27-6909-449a-aa41-995f08114362",
+          "execution": "ac5f1252-2245-4f9e-8ab9-9e3ae36f1c3d"
+        }
+      }
+    ],
+    "error": null
+  }
+}

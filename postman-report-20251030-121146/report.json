@@ -1,0 +1,2592 @@
+{
+  "collection": {
+    "_": {
+      "postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1"
+    },
+    "item": [
+      {
+        "id": "c80b941d-5816-465c-bec7-f9df1b5f0495",
+        "name": "POST Crear Criatura",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "cf0be4d3-5caa-4da0-9f9a-238ae00d3c37",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Creature created successfully\", function () {",
+                "  pm.response.to.have.status(201);",
+                "  const jsonData = pm.response.json();",
+                "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                "});",
+                "",
+                "// Guardar ID para siguientes requests",
+                "const jsonData = pm.response.json();",
+                "pm.environment.set(\"creatureId\", jsonData.id);"
+              ],
+              "_lastExecutionId": "f6443315-f718-4dca-bd6e-44175a225a8c"
+            }
+          }
+        ]
+      },
+      {
+        "id": "4eb7294d-d063-4c94-abfc-0d326be99059",
+        "name": "GET Lista de Criaturas",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "4a21017f-1197-4bd8-a43e-d43845460679",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"List retrieved\", function () {",
+                "  pm.response.to.have.status(200);",
+                "  const jsonData = pm.response.json();",
+                "  pm.expect(jsonData.length).to.be.above(0);",
+                "});"
+              ],
+              "_lastExecutionId": "4e78a50a-2476-49f5-b273-db5222677b02"
+            }
+          }
+        ]
+      },
+      {
+        "id": "fc4400dd-ffc0-4812-b963-f26ab8f72c11",
+        "name": "GET Criatura por ID",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures",
+              "{{creatureId}}"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "GET"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "b0a99102-6c8b-4108-8a3c-f056f6a20558",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Creature retrieved successfully\", function () {",
+                "  pm.response.to.have.status(200);",
+                "  const jsonData = pm.response.json();",
+                "  pm.expect(jsonData).to.have.property(\"id\");",
+                "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                "});"
+              ],
+              "_lastExecutionId": "09096ade-62ea-4e82-9376-95700e564976"
+            }
+          }
+        ]
+      },
+      {
+        "id": "10aa84c7-2504-4108-8bb1-a5204170837b",
+        "name": "PUT Actualizar Criatura",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures",
+              "{{creatureId}}"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "03cd8e89-5878-4533-b7b3-45b1ef750ee4",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Creature updated successfully\", function () {",
+                "  pm.response.to.have.status(200);",
+                "  const jsonData = pm.response.json();",
+                "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                "});"
+              ],
+              "_lastExecutionId": "b830519c-5ee1-487f-9ff6-e3136111d248"
+            }
+          }
+        ]
+      },
+      {
+        "id": "f2015ea7-5018-4ad6-af98-2fc8f7c5b315",
+        "name": "DELETE Eliminar Criatura",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures",
+              "{{creatureId}}"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "DELETE"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "12b3f60d-9959-4c15-a3b1-ada05d47b6ff",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Creature deleted successfully\", function () {",
+                "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                "});"
+              ],
+              "_lastExecutionId": "6aec8e5b-31c4-45ab-992a-f67d0b8177d1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "66c84397-5d90-4c17-8612-97c9076a1d75",
+        "name": "POST Crear Criatura CRÍTICA",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+          }
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "51e9e06b-ff8a-4914-a40b-1ed53e9d29e0",
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Critical creature created\", function () {",
+                "  pm.response.to.have.status(201);",
+                "  const jsonData = pm.response.json();",
+                "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                "});",
+                "",
+                "// Guardar ID crítico",
+                "const critical = pm.response.json();",
+                "pm.environment.set(\"criticalCreatureId\", critical.id);"
+              ],
+              "_lastExecutionId": "1a31a51f-f29d-470a-858a-15855380be5b"
+            }
+          }
+        ]
+      },
+      {
+        "id": "872d8656-10de-4639-a8c3-9ac120e39cac",
+        "name": "DELETE Criatura CRÍTICA (espera 422)",
+        "request": {
+          "url": {
+            "path": [
+              "api",
+              "creatures",
+              "{{criticalCreatureId}}"
+            ],
+            "host": [
+              "{{baseUrl}}"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "method": "DELETE"
+        },
+        "response": [],
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "id": "98625f66-d6ed-4287-8d2c-1896022bfcc7",
+              "type": "text/javascript",
+              "exec": [
+                "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                "  pm.expect(pm.response.code).to.eql(422);",
+                "});"
+              ],
+              "_lastExecutionId": "fa3565e3-45b5-4643-820e-9663de37efef"
+            }
+          }
+        ]
+      }
+    ],
+    "event": [],
+    "variable": [],
+    "info": {
+      "_postman_id": "3b8a6b2f-8f77-4c61-9f0c-a9b2d5f5d9e1",
+      "name": "Zoo Fantástico - CRUD Creatures",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "description": {
+        "content": "Colección CRUD de criaturas con casos normales y caso de eliminación en estado crítico (422). Usa {{baseUrl}} y {{zoneId}} del environment.",
+        "type": "text/plain"
+      }
+    }
+  },
+  "environment": {
+    "_": {
+      "postman_variable_scope": "environment",
+      "postman_exported_at": "2025-10-29T16:00:00.000Z",
+      "postman_exported_using": "Postman/11.69.2"
+    },
+    "id": "1d7ac73f-2c0e-494d-b2a2-cf27c42bbbb3",
+    "name": "Zoo Fantastico – Local",
+    "values": [
+      {
+        "type": "any",
+        "value": "http://localhost:8080",
+        "key": "baseUrl"
+      },
+      {
+        "type": "any",
+        "value": "1",
+        "key": "zoneId"
+      },
+      {
+        "type": "any",
+        "value": 1,
+        "key": "creatureId"
+      },
+      {
+        "type": "any",
+        "value": 2,
+        "key": "criticalCreatureId"
+      }
+    ]
+  },
+  "globals": {
+    "id": "91ea9ee2-4996-4c22-87ac-9cc254af9715",
+    "values": []
+  },
+  "run": {
+    "stats": {
+      "iterations": {
+        "total": 1,
+        "pending": 0,
+        "failed": 0
+      },
+      "items": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "scripts": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequests": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "requests": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "tests": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "assertions": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "testScripts": {
+        "total": 7,
+        "pending": 0,
+        "failed": 0
+      },
+      "prerequestScripts": {
+        "total": 0,
+        "pending": 0,
+        "failed": 0
+      }
+    },
+    "timings": {
+      "responseAverage": 29.428571428571427,
+      "responseMin": 5,
+      "responseMax": 114,
+      "responseSd": 36.56640590509719,
+      "dnsAverage": 0,
+      "dnsMin": 0,
+      "dnsMax": 0,
+      "dnsSd": 0,
+      "firstByteAverage": 0,
+      "firstByteMin": 0,
+      "firstByteMax": 0,
+      "firstByteSd": 0,
+      "started": 1761844307428,
+      "completed": 1761844307741
+    },
+    "executions": [
+      {
+        "cursor": {
+          "position": 0,
+          "iteration": 0,
+          "length": 7,
+          "cycles": 1,
+          "empty": false,
+          "eof": false,
+          "bof": true,
+          "cr": false,
+          "ref": "188a0c79-e67d-405f-bb87-379a7fd976b2",
+          "httpRequestId": "5454f3ca-42a2-4fef-a23f-aa998fccdc4e"
+        },
+        "item": {
+          "id": "c80b941d-5816-465c-bec7-f9df1b5f0495",
+          "name": "POST Crear Criatura",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": {{zoneId}}\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "cf0be4d3-5caa-4da0-9f9a-238ae00d3c37",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature created successfully\", function () {",
+                  "  pm.response.to.have.status(201);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                  "});",
+                  "",
+                  "// Guardar ID para siguientes requests",
+                  "const jsonData = pm.response.json();",
+                  "pm.environment.set(\"creatureId\", jsonData.id);"
+                ],
+                "_lastExecutionId": "f6443315-f718-4dca-bd6e-44175a225a8c"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "d367b696-7063-446a-94b0-6c904f20f75f",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "124",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Dragón\",\n  \"species\": \"Reptil\",\n  \"size\": 3.5,\n  \"dangerLevel\": 4,\n  \"healthStatus\": \"stable\",\n  \"zoneId\": 1\n}"
+          }
+        },
+        "response": {
+          "id": "06ba195d-7862-47f2-98c5-be6158dc9a85",
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "bda9a3f7-1237-49fc-877b-188a02f77a63"
+            },
+            {
+              "key": "Location",
+              "value": "/api/creatures/1"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 17:11:47 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              68,
+              114,
+              97,
+              103,
+              195,
+              179,
+              110,
+              34,
+              44,
+              34,
+              115,
+              112,
+              101,
+              99,
+              105,
+              101,
+              115,
+              34,
+              58,
+              34,
+              82,
+              101,
+              112,
+              116,
+              105,
+              108,
+              34,
+              44,
+              34,
+              115,
+              105,
+              122,
+              101,
+              34,
+              58,
+              51,
+              46,
+              53,
+              44,
+              34,
+              100,
+              97,
+              110,
+              103,
+              101,
+              114,
+              76,
+              101,
+              118,
+              101,
+              108,
+              34,
+              58,
+              52,
+              44,
+              34,
+              104,
+              101,
+              97,
+              108,
+              116,
+              104,
+              83,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              115,
+              116,
+              97,
+              98,
+              108,
+              101,
+              34,
+              44,
+              34,
+              122,
+              111,
+              110,
+              101,
+              34,
+              58,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              118,
+              97,
+              110,
+              110,
+              97,
+              104,
+              34,
+              44,
+              34,
+              100,
+              101,
+              115,
+              99,
+              114,
+              105,
+              112,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              110,
+              117,
+              108,
+              108,
+              44,
+              34,
+              99,
+              97,
+              112,
+              97,
+              99,
+              105,
+              116,
+              121,
+              34,
+              58,
+              49,
+              48,
+              48,
+              125,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 114,
+          "responseSize": 163
+        },
+        "id": "c80b941d-5816-465c-bec7-f9df1b5f0495",
+        "assertions": [
+          {
+            "assertion": "Creature created successfully",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "03629385-0987-4757-8df6-9fd38eb51659",
+          "length": 7,
+          "cycles": 1,
+          "position": 1,
+          "iteration": 0,
+          "httpRequestId": "f212798d-d0b9-471f-8059-c46aa9b429e5"
+        },
+        "item": {
+          "id": "4eb7294d-d063-4c94-abfc-0d326be99059",
+          "name": "GET Lista de Criaturas",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4a21017f-1197-4bd8-a43e-d43845460679",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"List retrieved\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.length).to.be.above(0);",
+                  "});"
+                ],
+                "_lastExecutionId": "4e78a50a-2476-49f5-b273-db5222677b02"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "cf989200-71ed-4a86-b229-663b12e4af8b",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "9ad980e2-75cb-4cef-a244-6eed9ea6af28",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "cc41c713-fb95-48e7-a815-b3f3159fde4a"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 17:11:47 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              91,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              68,
+              114,
+              97,
+              103,
+              195,
+              179,
+              110,
+              34,
+              44,
+              34,
+              115,
+              112,
+              101,
+              99,
+              105,
+              101,
+              115,
+              34,
+              58,
+              34,
+              82,
+              101,
+              112,
+              116,
+              105,
+              108,
+              34,
+              44,
+              34,
+              115,
+              105,
+              122,
+              101,
+              34,
+              58,
+              51,
+              46,
+              53,
+              44,
+              34,
+              100,
+              97,
+              110,
+              103,
+              101,
+              114,
+              76,
+              101,
+              118,
+              101,
+              108,
+              34,
+              58,
+              52,
+              44,
+              34,
+              104,
+              101,
+              97,
+              108,
+              116,
+              104,
+              83,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              115,
+              116,
+              97,
+              98,
+              108,
+              101,
+              34,
+              44,
+              34,
+              122,
+              111,
+              110,
+              101,
+              34,
+              58,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              118,
+              97,
+              110,
+              110,
+              97,
+              104,
+              34,
+              44,
+              34,
+              100,
+              101,
+              115,
+              99,
+              114,
+              105,
+              112,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              110,
+              117,
+              108,
+              108,
+              44,
+              34,
+              99,
+              97,
+              112,
+              97,
+              99,
+              105,
+              116,
+              121,
+              34,
+              58,
+              49,
+              48,
+              48,
+              125,
+              125,
+              93
+            ]
+          },
+          "cookie": [],
+          "responseTime": 14,
+          "responseSize": 165
+        },
+        "id": "4eb7294d-d063-4c94-abfc-0d326be99059",
+        "assertions": [
+          {
+            "assertion": "List retrieved",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "af4548ef-dcc2-4096-9f6f-5ee1a89c4c27",
+          "length": 7,
+          "cycles": 1,
+          "position": 2,
+          "iteration": 0,
+          "httpRequestId": "9ea35693-5f23-4903-a366-34fa367b88ca"
+        },
+        "item": {
+          "id": "fc4400dd-ffc0-4812-b963-f26ab8f72c11",
+          "name": "GET Criatura por ID",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{creatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b0a99102-6c8b-4108-8a3c-f056f6a20558",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature retrieved successfully\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData).to.have.property(\"id\");",
+                  "  pm.expect(jsonData.name).to.eql(\"Dragón\");",
+                  "});"
+                ],
+                "_lastExecutionId": "09096ade-62ea-4e82-9376-95700e564976"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures",
+              "1"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "66c93b31-a683-4d62-8fcf-608e967f5cc6",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "GET"
+        },
+        "response": {
+          "id": "d4c24efc-8cab-4d7e-a9bd-dd21618fe9c4",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "2e826737-f656-49c2-a3ed-9bf7c388a1ed"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 17:11:47 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              68,
+              114,
+              97,
+              103,
+              195,
+              179,
+              110,
+              34,
+              44,
+              34,
+              115,
+              112,
+              101,
+              99,
+              105,
+              101,
+              115,
+              34,
+              58,
+              34,
+              82,
+              101,
+              112,
+              116,
+              105,
+              108,
+              34,
+              44,
+              34,
+              115,
+              105,
+              122,
+              101,
+              34,
+              58,
+              51,
+              46,
+              53,
+              44,
+              34,
+              100,
+              97,
+              110,
+              103,
+              101,
+              114,
+              76,
+              101,
+              118,
+              101,
+              108,
+              34,
+              58,
+              52,
+              44,
+              34,
+              104,
+              101,
+              97,
+              108,
+              116,
+              104,
+              83,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              115,
+              116,
+              97,
+              98,
+              108,
+              101,
+              34,
+              44,
+              34,
+              122,
+              111,
+              110,
+              101,
+              34,
+              58,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              118,
+              97,
+              110,
+              110,
+              97,
+              104,
+              34,
+              44,
+              34,
+              100,
+              101,
+              115,
+              99,
+              114,
+              105,
+              112,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              110,
+              117,
+              108,
+              108,
+              44,
+              34,
+              99,
+              97,
+              112,
+              97,
+              99,
+              105,
+              116,
+              121,
+              34,
+              58,
+              49,
+              48,
+              48,
+              125,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 6,
+          "responseSize": 163
+        },
+        "id": "fc4400dd-ffc0-4812-b963-f26ab8f72c11",
+        "assertions": [
+          {
+            "assertion": "Creature retrieved successfully",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "11153bfc-d321-45d4-9cf4-8592b7aa2c17",
+          "length": 7,
+          "cycles": 1,
+          "position": 3,
+          "iteration": 0,
+          "httpRequestId": "2e36c5df-d096-4202-b108-12ed2ebf7100"
+        },
+        "item": {
+          "id": "10aa84c7-2504-4108-8bb1-a5204170837b",
+          "name": "PUT Actualizar Criatura",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{creatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "03cd8e89-5878-4533-b7b3-45b1ef750ee4",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature updated successfully\", function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.name).to.eql(\"Dragón Rojo\");",
+                  "});"
+                ],
+                "_lastExecutionId": "b830519c-5ee1-487f-9ff6-e3136111d248"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures",
+              "1"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "f064e1e9-c433-48cb-9ed7-d80372fbd11a",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "114",
+              "system": true
+            }
+          ],
+          "method": "PUT",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Dragón Rojo\",\n  \"species\": \"Reptil\",\n  \"size\": 3.8,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"stable\"\n}"
+          }
+        },
+        "response": {
+          "id": "058a29ff-d345-492f-ba0e-a93822cebc4a",
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "6af3de4d-1e0b-49b1-b7df-98b15522f574"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 17:11:47 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              68,
+              114,
+              97,
+              103,
+              195,
+              179,
+              110,
+              32,
+              82,
+              111,
+              106,
+              111,
+              34,
+              44,
+              34,
+              115,
+              112,
+              101,
+              99,
+              105,
+              101,
+              115,
+              34,
+              58,
+              34,
+              82,
+              101,
+              112,
+              116,
+              105,
+              108,
+              34,
+              44,
+              34,
+              115,
+              105,
+              122,
+              101,
+              34,
+              58,
+              51,
+              46,
+              56,
+              44,
+              34,
+              100,
+              97,
+              110,
+              103,
+              101,
+              114,
+              76,
+              101,
+              118,
+              101,
+              108,
+              34,
+              58,
+              53,
+              44,
+              34,
+              104,
+              101,
+              97,
+              108,
+              116,
+              104,
+              83,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              115,
+              116,
+              97,
+              98,
+              108,
+              101,
+              34,
+              44,
+              34,
+              122,
+              111,
+              110,
+              101,
+              34,
+              58,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              118,
+              97,
+              110,
+              110,
+              97,
+              104,
+              34,
+              44,
+              34,
+              100,
+              101,
+              115,
+              99,
+              114,
+              105,
+              112,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              110,
+              117,
+              108,
+              108,
+              44,
+              34,
+              99,
+              97,
+              112,
+              97,
+              99,
+              105,
+              116,
+              121,
+              34,
+              58,
+              49,
+              48,
+              48,
+              125,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 43,
+          "responseSize": 168
+        },
+        "id": "10aa84c7-2504-4108-8bb1-a5204170837b",
+        "assertions": [
+          {
+            "assertion": "Creature updated successfully",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "7b4f81d0-d5d7-40df-807a-ab35d0693d7f",
+          "length": 7,
+          "cycles": 1,
+          "position": 4,
+          "iteration": 0,
+          "httpRequestId": "f05e6c92-4f6b-4271-a190-dab0eb2a426b"
+        },
+        "item": {
+          "id": "f2015ea7-5018-4ad6-af98-2fc8f7c5b315",
+          "name": "DELETE Eliminar Criatura",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{creatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "12b3f60d-9959-4c15-a3b1-ada05d47b6ff",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Creature deleted successfully\", function () {",
+                  "  pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+                  "});"
+                ],
+                "_lastExecutionId": "6aec8e5b-31c4-45ab-992a-f67d0b8177d1"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures",
+              "1"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "68b37dba-bb05-4df6-8814-8409334325cd",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "DELETE"
+        },
+        "response": {
+          "id": "4a023f52-bedb-4634-9b55-c9a064ede4ea",
+          "status": "No Content",
+          "code": 204,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "bf9921b7-cb34-43c4-9f55-62e1067bd863"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 17:11:47 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": []
+          },
+          "cookie": [],
+          "responseTime": 16,
+          "responseSize": 0
+        },
+        "id": "f2015ea7-5018-4ad6-af98-2fc8f7c5b315",
+        "assertions": [
+          {
+            "assertion": "Creature deleted successfully",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "3004681b-a3b3-47a7-ad74-1a905787f342",
+          "length": 7,
+          "cycles": 1,
+          "position": 5,
+          "iteration": 0,
+          "httpRequestId": "da0ee057-2a7a-474f-8eb3-2582101cfa2e"
+        },
+        "item": {
+          "id": "66c84397-5d90-4c17-8612-97c9076a1d75",
+          "name": "POST Crear Criatura CRÍTICA",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": {{zoneId}}\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "51e9e06b-ff8a-4914-a40b-1ed53e9d29e0",
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Critical creature created\", function () {",
+                  "  pm.response.to.have.status(201);",
+                  "  const jsonData = pm.response.json();",
+                  "  pm.expect(jsonData.healthStatus.toLowerCase()).to.eql(\"critical\");",
+                  "});",
+                  "",
+                  "// Guardar ID crítico",
+                  "const critical = pm.response.json();",
+                  "pm.environment.set(\"criticalCreatureId\", critical.id);"
+                ],
+                "_lastExecutionId": "1a31a51f-f29d-470a-858a-15855380be5b"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "a62740f8-bf12-457b-b31c-918d819d6e75",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            },
+            {
+              "key": "Content-Length",
+              "value": "136",
+              "system": true
+            }
+          ],
+          "method": "POST",
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"name\": \"Hidra Crítica\",\n  \"species\": \"Serpiente\",\n  \"size\": 2.1,\n  \"dangerLevel\": 5,\n  \"healthStatus\": \"critical\",\n  \"zoneId\": 1\n}"
+          }
+        },
+        "response": {
+          "id": "f53ad48e-5914-41ad-9f08-5b5b19f506d7",
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "7de8eac9-93b5-450c-9ac1-a2bb0911361e"
+            },
+            {
+              "key": "Location",
+              "value": "/api/creatures/2"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 17:11:47 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              50,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              72,
+              105,
+              100,
+              114,
+              97,
+              32,
+              67,
+              114,
+              195,
+              173,
+              116,
+              105,
+              99,
+              97,
+              34,
+              44,
+              34,
+              115,
+              112,
+              101,
+              99,
+              105,
+              101,
+              115,
+              34,
+              58,
+              34,
+              83,
+              101,
+              114,
+              112,
+              105,
+              101,
+              110,
+              116,
+              101,
+              34,
+              44,
+              34,
+              115,
+              105,
+              122,
+              101,
+              34,
+              58,
+              50,
+              46,
+              49,
+              44,
+              34,
+              100,
+              97,
+              110,
+              103,
+              101,
+              114,
+              76,
+              101,
+              118,
+              101,
+              108,
+              34,
+              58,
+              53,
+              44,
+              34,
+              104,
+              101,
+              97,
+              108,
+              116,
+              104,
+              83,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              34,
+              99,
+              114,
+              105,
+              116,
+              105,
+              99,
+              97,
+              108,
+              34,
+              44,
+              34,
+              122,
+              111,
+              110,
+              101,
+              34,
+              58,
+              123,
+              34,
+              105,
+              100,
+              34,
+              58,
+              49,
+              44,
+              34,
+              110,
+              97,
+              109,
+              101,
+              34,
+              58,
+              34,
+              83,
+              97,
+              118,
+              97,
+              110,
+              110,
+              97,
+              104,
+              34,
+              44,
+              34,
+              100,
+              101,
+              115,
+              99,
+              114,
+              105,
+              112,
+              116,
+              105,
+              111,
+              110,
+              34,
+              58,
+              110,
+              117,
+              108,
+              108,
+              44,
+              34,
+              99,
+              97,
+              112,
+              97,
+              99,
+              105,
+              116,
+              121,
+              34,
+              58,
+              49,
+              48,
+              48,
+              125,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 8,
+          "responseSize": 175
+        },
+        "id": "66c84397-5d90-4c17-8612-97c9076a1d75",
+        "assertions": [
+          {
+            "assertion": "Critical creature created",
+            "skipped": false
+          }
+        ]
+      },
+      {
+        "cursor": {
+          "ref": "7a75407d-f66d-432c-8623-4990b1e9e90c",
+          "length": 7,
+          "cycles": 1,
+          "position": 6,
+          "iteration": 0,
+          "httpRequestId": "56e757f3-0e5b-4292-9105-30d8ceffafc9"
+        },
+        "item": {
+          "id": "872d8656-10de-4639-a8c3-9ac120e39cac",
+          "name": "DELETE Criatura CRÍTICA (espera 422)",
+          "request": {
+            "url": {
+              "path": [
+                "api",
+                "creatures",
+                "{{criticalCreatureId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "98625f66-d6ed-4287-8d2c-1896022bfcc7",
+                "type": "text/javascript",
+                "exec": [
+                  "// En esta API el borrado de una criatura en estado crítico debe ser rechazado.",
+                  "pm.test(\"Delete blocked for critical creature (422)\", function () {",
+                  "  pm.expect(pm.response.code).to.eql(422);",
+                  "});"
+                ],
+                "_lastExecutionId": "fa3565e3-45b5-4643-820e-9663de37efef"
+              }
+            }
+          ]
+        },
+        "request": {
+          "url": {
+            "protocol": "http",
+            "port": "8080",
+            "path": [
+              "api",
+              "creatures",
+              "2"
+            ],
+            "host": [
+              "localhost"
+            ],
+            "query": [],
+            "variable": []
+          },
+          "header": [
+            {
+              "key": "User-Agent",
+              "value": "PostmanRuntime/7.39.1",
+              "system": true
+            },
+            {
+              "key": "Accept",
+              "value": "*/*",
+              "system": true
+            },
+            {
+              "key": "Cache-Control",
+              "value": "no-cache",
+              "system": true
+            },
+            {
+              "key": "Postman-Token",
+              "value": "9e76312b-48fd-48ac-99ab-f5860ba7c10c",
+              "system": true
+            },
+            {
+              "key": "Host",
+              "value": "localhost:8080",
+              "system": true
+            },
+            {
+              "key": "Accept-Encoding",
+              "value": "gzip, deflate, br",
+              "system": true
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive",
+              "system": true
+            }
+          ],
+          "method": "DELETE"
+        },
+        "response": {
+          "id": "8d86edfb-36d3-4fcb-8621-8b740419f622",
+          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+          "code": 422,
+          "header": [
+            {
+              "key": "X-Request-Id",
+              "value": "4d81a88d-1aad-4fbf-9c6d-cde7e9a5c5de"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 30 Oct 2025 17:11:47 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "stream": {
+            "type": "Buffer",
+            "data": [
+              123,
+              34,
+              116,
+              105,
+              109,
+              101,
+              115,
+              116,
+              97,
+              109,
+              112,
+              34,
+              58,
+              34,
+              50,
+              48,
+              50,
+              53,
+              45,
+              49,
+              48,
+              45,
+              51,
+              48,
+              84,
+              49,
+              55,
+              58,
+              49,
+              49,
+              58,
+              52,
+              55,
+              46,
+              55,
+              51,
+              51,
+              51,
+              49,
+              54,
+              52,
+              50,
+              48,
+              90,
+              34,
+              44,
+              34,
+              115,
+              116,
+              97,
+              116,
+              117,
+              115,
+              34,
+              58,
+              52,
+              50,
+              50,
+              44,
+              34,
+              101,
+              114,
+              114,
+              111,
+              114,
+              34,
+              58,
+              34,
+              85,
+              110,
+              112,
+              114,
+              111,
+              99,
+              101,
+              115,
+              115,
+              97,
+              98,
+              108,
+              101,
+              32,
+              69,
+              110,
+              116,
+              105,
+              116,
+              121,
+              34,
+              44,
+              34,
+              109,
+              101,
+              115,
+              115,
+              97,
+              103,
+              101,
+              34,
+              58,
+              34,
+              67,
+              97,
+              110,
+              110,
+              111,
+              116,
+              32,
+              100,
+              101,
+              108,
+              101,
+              116,
+              101,
+              32,
+              97,
+              32,
+              99,
+              114,
+              101,
+              97,
+              116,
+              117,
+              114,
+              101,
+              32,
+              105,
+              110,
+              32,
+              99,
+              114,
+              105,
+              116,
+              105,
+              99,
+              97,
+              108,
+              32,
+              104,
+              101,
+              97,
+              108,
+              116,
+              104,
+              34,
+              44,
+              34,
+              112,
+              97,
+              116,
+              104,
+              34,
+              58,
+              34,
+              47,
+              97,
+              112,
+              105,
+              47,
+              99,
+              114,
+              101,
+              97,
+              116,
+              117,
+              114,
+              101,
+              115,
+              47,
+              50,
+              34,
+              44,
+              34,
+              116,
+              114,
+              97,
+              99,
+              101,
+              73,
+              100,
+              34,
+              58,
+              34,
+              52,
+              100,
+              56,
+              49,
+              97,
+              56,
+              56,
+              100,
+              45,
+              49,
+              97,
+              97,
+              100,
+              45,
+              52,
+              102,
+              98,
+              102,
+              45,
+              57,
+              99,
+              54,
+              100,
+              45,
+              99,
+              100,
+              101,
+              55,
+              101,
+              57,
+              97,
+              53,
+              99,
+              53,
+              100,
+              101,
+              34,
+              44,
+              34,
+              102,
+              105,
+              101,
+              108,
+              100,
+              69,
+              114,
+              114,
+              111,
+              114,
+              115,
+              34,
+              58,
+              91,
+              93,
+              125
+            ]
+          },
+          "cookie": [],
+          "responseTime": 5,
+          "responseSize": 238
+        },
+        "id": "872d8656-10de-4639-a8c3-9ac120e39cac",
+        "assertions": [
+          {
+            "assertion": "Delete blocked for critical creature (422)",
+            "skipped": false
+          }
+        ]
+      }
+    ],
+    "transfers": {
+      "responseTotal": 1072
+    },
+    "failures": [],
+    "error": null
+  }
+}
