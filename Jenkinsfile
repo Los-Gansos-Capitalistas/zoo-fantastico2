@@ -4,23 +4,10 @@ pipeline {
   options {
     timestamps()
     buildDiscarder(logRotator(numToKeepStr: '15'))
-    ansiColor('xterm')
   }
 
-  parameters {
-    string(name: 'USERS', defaultValue: '50', description: 'Usuarios (threads)')
-    string(name: 'RAMP', defaultValue: '50', description: 'Ramp-up (segundos)')
-    string(name: 'LOOPS', defaultValue: '1', description: 'Ciclos por usuario')
-    string(name: 'CSV', defaultValue: 'data/creatures.csv', description: 'Ruta al CSV')
-    choice(name: 'ENV', choices: ['local','qa','prod'], description: 'Entorno')
-    string(name: 'P95_LIMIT_MS', defaultValue: '150', description: 'Umbral p95 (ms)')
-    string(name: 'ERR_LIMIT_PCT', defaultValue: '0', description: 'Umbral errores (%)')
-  }
   stages {
 
-    // -------------------------
-    //  Checkout del código
-    // -------------------------
     stage('Checkout') {
       steps {
         checkout scm
@@ -28,118 +15,56 @@ pipeline {
       }
     }
 
-    // -------------------------
-    //  Levantar entorno local
-    // -------------------------
-    stage('Build & Start Docker') {
+    stage('Build') {
       steps {
-        sh '''
-          echo "▶ Levantando entorno local Zoo Fantástico..."
-          docker compose up -d
-
-          echo " Esperando API..."
-          for i in {1..30}; do
-            if curl -fsS http://host.docker.internal:8080/actuator/health | grep -q '"status":"UP"'; then
-              echo " API disponible"
-              break
-            fi
-            echo "Esperando API... ($i/30)"
-            sleep 3
-          done
-        '''
+        echo "== Build: empaquetar aplicación =="
+        sh 'chmod +x mvnw || true'
+        sh './mvnw clean package -DskipTests=false'
       }
     }
 
-    // -------------------------
-    //  Tests Postman (API funcional)
-    // -------------------------
-    stage('Run Postman (Newman)') {
-      agent {
-        docker {
-          image 'postman/newman:alpine'
-          args '-v $PWD:/etc/newman'
-        }
-      }
+    stage('Run Tests') {
       steps {
-        sh '''
-          echo "▶ Ejecutando colección Postman..."
-          mkdir -p reports
-
-          newman run postman/Zoo_Fantastico_CRUD_Creatures.postman_collection.json \
-            -e postman/Zoo_Fantastico_Local.postman_environment.json \
-            -r cli,htmlextra,junitfull \
-            --reporter-htmlextra-export reports/postman.html \
-            --reporter-junitfull-export reports/postman.junit.xml
-        '''
-      }
-      post {
-        always {
-          junit 'reports/postman.junit.xml'
-          archiveArtifacts artifacts: 'reports/postman.html', onlyIfSuccessful: false
-        }
+        echo "== Run Tests: ejecutar pruebas unitarias e integración =="
+        sh './mvnw test'
       }
     }
 
-    // -------------------------
-    //  Prueba de carga con JMeter
-    // -------------------------
-    stage('Run Load Test (JMeter)') {
-      agent {
-        docker {
-          image 'justb4/jmeter:5.6.3'
-          args '-v $PWD:/loadtest -w /loadtest'
-        }
-      }
+    stage('Docker Build') {
       steps {
-        sh '''
-          echo "▶ Ejecutando prueba de carga JMeter..."
-          chmod +x run-load.sh
-
-          ./run-load.sh \
-            -t /loadtest/tests/creatures-load-ci.jmx \
-            -u "${USERS}" -r "${RAMP}" -l "${LOOPS}" \
-            -c "${CSV}" --env="${ENV}" --p95="${P95_LIMIT_MS}" --err="${ERR_LIMIT_PCT}"
-        '''
+        echo "== Docker Build: construir imagen zoo-fantastico-app:latest =="
+        sh 'docker build -t zoo-fantastico-app:latest .'
       }
     }
 
-    // -------------------------
-    //  Publicar reportes HTML
-    // -------------------------
-    stage('Publish Reports') {
+    stage('Docker Run') {
       steps {
-        script {
-          echo " Publicando reportes..."
+        echo "== Docker Run: levantar contenedor en puerto 8083 (host) -> 8080 (contenedor) =="
 
-          // Detectar carpeta del último run-load
-          def latest = sh(script: 'readlink -f report-latest', returnStdout: true).trim()
+        sh '''
+          echo "▶ Limpiando contenedor previo (si existe)..."
+          docker ps -q --filter "name=zoo-fantastico-pipeline" | xargs -r docker stop
+          docker ps -aq --filter "name=zoo-fantastico-pipeline" | xargs -r docker rm
 
-          publishHTML([
-            allowMissing: false,
-            alwaysLinkToLastBuild: true,
-            keepAll: true,
-            reportDir: latest,
-            reportFiles: 'index.html',
-            reportName: 'JMeter Dashboard'
-          ])
-        }
+          echo "▶ Levantando nuevo contenedor..."
+          docker run -d --name zoo-fantastico-pipeline -p 8083:8080 zoo-fantastico-app:latest
+        '''
       }
     }
   }
 
-  // -------------------------
-  // Post-build notifications
-  // -------------------------
   post {
     always {
-      echo ' Limpieza: apagando contenedores...'
-      sh 'docker compose down -v || true'
+      echo ' Limpieza final opcional:'
+      // Si quieres que el contenedor NO quede corriendo al final, descomenta estas:
+      // sh 'docker ps -q --filter "name=zoo-fantastico-pipeline" | xargs -r docker stop || true'
+      // sh 'docker ps -aq --filter "name=zoo-fantastico-pipeline" | xargs -r docker rm || true'
     }
     success {
-      echo 'Pipeline completado correctamente.'
+      echo 'Pipeline completado correctamente (Build + Tests + Docker Build + Docker Run).'
     }
     failure {
-      echo ' Pipeline falló: revisa los reportes HTML.'
+      echo ' Pipeline falló: revisa la consola para ver en qué etapa se cayó.'
     }
   }
 }
