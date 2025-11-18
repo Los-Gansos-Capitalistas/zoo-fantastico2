@@ -59,10 +59,16 @@ pipeline {
 
         success {
             echo '¡Pipeline completado correctamente!'
+            mail to: 'tu-correo@ejemplo.com',
+                 subject: '✅ Zoo Fantástico – Pipeline SUCCESS',
+                 body: "El pipeline zoo-fantastico-pipeline terminó correctamente.\n\nRevisa Jenkins si quieres ver detalles."
         }
 
         failure {
             echo 'Pipeline falló: revisa los reportes.'
+            mail to: 'tu-correo@ejemplo.com',
+                 subject: '❌ Zoo Fantástico – Pipeline FAILURE',
+                 body: "El pipeline zoo-fantastico-pipeline FALLÓ.\n\nRevisa Jenkins para ver en qué etapa se rompió."
         }
     }
 }
